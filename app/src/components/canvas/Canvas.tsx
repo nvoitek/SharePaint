@@ -1,5 +1,5 @@
 
-import './Canvas.css';
+import './Canvas.scss';
 
 export function Canvas() {
 
