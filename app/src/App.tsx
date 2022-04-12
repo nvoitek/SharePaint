@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
 import './App.scss';
+import React, {useState} from 'react';
 import { Toolbar, Mode } from './components/toolbar/Toolbar';
 import { Canvas } from './components/canvas/Canvas';
-
-
 
 function App() {
 
@@ -12,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Toolbar currentMode={mode} setMode={setMode}/>
-      <Canvas />
+      <Canvas currentMode={mode}/>
     </div>
   );
 }

@@ -45,7 +45,6 @@ export function Toolbar(props: ToolbarProps) {
                 <input className="toolbar-draw-circle" name="toolbar-radio" type="radio" value={Mode.DrawCircle} defaultChecked={props.currentMode === Mode.DrawCircle} />
                 Circle
             </label>
-
         </div>
     );
 }

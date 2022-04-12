@@ -1,5 +1,7 @@
 .canvas {
     background-color: lightgray;
 
-    flex-grow: 1;
+    &.draw-cursor {
+        cursor: crosshair;
+    }
 }
