@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.API", "SharePaint.API\SharePaint.API.csproj", "{C0750106-B29E-48B7-A505-B9304EDEDF5D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EE1E03E-58D9-48A8-9C7C-5294E354DE00}
+	EndGlobalSection
+EndGlobal
