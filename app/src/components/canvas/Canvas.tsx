@@ -54,7 +54,7 @@ export function Canvas(props: CanvasProps) {
             let newPointsNr = pointsNr + 1;
             setPointsNr(newPointsNr);
 
-            // TODO other shape
+            // TODO better handling for other shapes, create more functions
             if (newPointsNr === 3 && props.currentMode === Mode.DrawTriangle) {
                 context?.lineTo(startPoint[0], startPoint[1]);
                 context?.stroke();
@@ -72,7 +72,7 @@ export function Canvas(props: CanvasProps) {
     return (
         <canvas
             ref={canvasRef}
-            // TODO calculate based on available space
+            // TODO calculate canvas size based on available space
             width={1200} height={800}
             className={`canvas ${(modeIsDraw()) ? 'draw-cursor' : ''}`}
             onClick={onClick}
