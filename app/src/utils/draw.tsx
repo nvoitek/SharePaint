@@ -1,34 +1,32 @@
-import { Mode } from "../components/toolbar/Toolbar";
+import { Coord2D } from "../models/Coord2D";
+import { ShapeType } from "../models/ShapeType";
 
-export interface Coord2D {
-    x: number,
-    y: number
-}
-
-export function checkIfComplete(points: Coord2D[], mode: Mode) : boolean {
-    if ((mode === Mode.DrawTriangle && points.length === 3)
-        || (mode === Mode.DrawRectangle && points.length === 2)
-        || (mode === Mode.DrawCircle && points.length === 2)) {
+export function checkIfComplete(points: Coord2D[], shapeType: ShapeType) : boolean {
+    if ((shapeType === ShapeType.Triangle && points.length === 3)
+        || (shapeType === ShapeType.Rectangle && points.length === 2)
+        || (shapeType === ShapeType.Circle && points.length === 2)) {
             return true;
         }
 
     return false;
 }
 
-export function drawOnCanvas(context: CanvasRenderingContext2D, points: Coord2D[], mode: Mode) {
-    if (mode === Mode.DrawTriangle) {
-        drawTriangle(context, points);
-    } else if (mode === Mode.DrawRectangle) {
-        drawRectangle(context, points);
-    } else if (mode === Mode.DrawCircle) {
-        drawCircle(context, points);
+export function drawOnCanvas(context: CanvasRenderingContext2D, points: Coord2D[], shapeType: ShapeType, color: string) {
+    if (shapeType === ShapeType.Triangle) {
+        drawTriangle(context, points, color);
+    } else if (shapeType === ShapeType.Rectangle) {
+        drawRectangle(context, points, color);
+    } else if (shapeType === ShapeType.Circle) {
+        drawCircle(context, points, color);
     }
 }
 
-function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[]) {
+function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[], color: string) {
     if (points.length !== 3) {
         return;
     }
+
+    context.strokeStyle = color;
 
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
@@ -43,10 +41,12 @@ function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[]) {
     context.stroke();
 }
 
-function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[]) {
+function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[], color: string) {
     if (points.length !== 2) {
         return;
     }
+    
+    context.strokeStyle = color;
 
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
@@ -64,10 +64,12 @@ function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[]) {
     context.stroke();
 }
 
-function drawCircle(context: CanvasRenderingContext2D, points: Coord2D[]) {
+function drawCircle(context: CanvasRenderingContext2D, points: Coord2D[], color: string) {
     if (points.length !== 2) {
         return;
     }
+    
+    context.strokeStyle = color;
 
     let radius = Math.sqrt(Math.pow(points[0].x - points[1].x, 2) + Math.pow(points[0].y - points[1].y, 2));
 

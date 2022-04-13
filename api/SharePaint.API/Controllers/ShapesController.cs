@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SharePaint.Models;
+using SharePaint.Services.Interfaces;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SharePaint.API.Controllers
 {
@@ -8,21 +10,23 @@ namespace SharePaint.API.Controllers
     [ApiController]
     public class ShapesController : ControllerBase
     {
-        private readonly ShapeService _shapeService;
+        private readonly IShapeService _shapeService;
 
-        public ShapesController(ShapeService shapeService)
+        public ShapesController(IShapeService shapeService)
         {
             _shapeService = shapeService;
         }
 
         [HttpGet]
-        public ActionResult<List<Shape>> Get() =>
-            _shapeService.Get();
+        public async Task<ActionResult<List<Shape>>> Get()
+        {
+            return await _shapeService.Get();
+        }
 
         [HttpGet("{id:length(24)}", Name = "GetShape")]
-        public ActionResult<Shape> Get(string id)
+        public async Task<ActionResult<Shape>> Get(string id)
         {
-            var shape = _shapeService.Get(id);
+            var shape = await _shapeService.Get(id);
 
             if (shape == null)
             {
@@ -33,39 +37,41 @@ namespace SharePaint.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Shape> Create(Shape shape)
+        public async Task<ActionResult<Shape>> Create(Shape shape)
         {
-            _shapeService.Create(shape);
+            await _shapeService.Create(shape);
 
             return CreatedAtRoute("GetShape", new { id = shape.Id.ToString() }, shape);
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Update(string id, Shape shapeIn)
+        public async Task<IActionResult> Update(string id, Shape shapeIn)
         {
-            var shape = _shapeService.Get(id);
+            var shape = await _shapeService.Get(id);
 
             if (shape == null)
             {
                 return NotFound();
             }
 
-            _shapeService.Update(id, shapeIn);
+            shapeIn.Id = id;
+
+            await _shapeService.Update(shapeIn);
 
             return NoContent();
         }
 
         [HttpDelete("{id:length(24)}")]
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
-            var shape = _shapeService.Get(id);
+            var shape = await _shapeService.Get(id);
 
             if (shape == null)
             {
                 return NotFound();
             }
 
-            _shapeService.Remove(id);
+            await _shapeService.Remove(id);
 
             return NoContent();
         }

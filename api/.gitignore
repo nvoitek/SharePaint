@@ -438,6 +438,9 @@ $RECYCLE.BIN/
 .idea/
 *.sln.iml
 
+# Visual Studio settings
+.vs/*
+
 ##
 ## Visual Studio Code
 ##

@@ -4,6 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using SharePaint.Repository;
+using SharePaint.Repository.Interfaces;
+using SharePaint.Services;
+using SharePaint.Services.Interfaces;
 
 namespace SharePaint.API
 {
@@ -20,13 +24,15 @@ namespace SharePaint.API
         public void ConfigureServices(IServiceCollection services)
         {
             // requires using Microsoft.Extensions.Options
-            services.Configure<ShapesDatabaseSettings>(
-                Configuration.GetSection(nameof(ShapesDatabaseSettings)));
+            services.Configure<DatabaseConnectionSettings>(
+                Configuration.GetSection(nameof(DatabaseConnectionSettings)));
 
-            services.AddSingleton<IConnectionSettings>(sp =>
-                sp.GetRequiredService<IOptions<ShapesDatabaseSettings>>().Value);
+            services.AddSingleton<IDatabaseConnectionSettings>(sp =>
+                sp.GetRequiredService<IOptions<DatabaseConnectionSettings>>().Value);
 
-            services.AddSingleton<ShapeService>();
+            services.AddSingleton<IMongoDbShapeContext, MongoDbShapeContext>();
+            services.AddSingleton<IShapeRepository, ShapeRepository>();
+            services.AddSingleton<IShapeService, ShapeService>();
 
             services.AddControllers().AddNewtonsoftJson();
         }
