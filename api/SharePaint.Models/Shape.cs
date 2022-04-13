@@ -10,7 +10,6 @@ namespace SharePaint.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [BsonElement("Type")]
         public ShapeType ShapeType { get; set; }
 
         public List<Coord2D> Points { get; set; }
