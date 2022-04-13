@@ -103,7 +103,12 @@ export function Canvas(props: CanvasProps) {
                     }
                 }
 
-                let palette = iwanthue(authors.length);
+                let palette: string[] = [];
+                if (authors.length <= 2) {
+                    palette = ["red", "blue"];
+                } else {
+                    palette = iwanthue(authors.length);
+                }
                 
                 for (let item of res.data) {
                     let shape = item as Shape;
