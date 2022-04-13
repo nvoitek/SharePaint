@@ -1,7 +1,8 @@
 import './App.scss';
 import React, {useState} from 'react';
-import { Toolbar, Mode } from './components/toolbar/Toolbar';
+import { Toolbar } from './components/toolbar/Toolbar';
 import { Canvas } from './components/canvas/Canvas';
+import { Mode } from './models/Mode';
 
 function App() {
 

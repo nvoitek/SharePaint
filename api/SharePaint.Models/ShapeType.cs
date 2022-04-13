@@ -4,7 +4,7 @@
     {
         //TODO: Maybe ShapeType should be both in frontend and backend
         Unknown,
-        Triangle = 2,
+        Triangle,
         Rectangle,
         Circle
     }

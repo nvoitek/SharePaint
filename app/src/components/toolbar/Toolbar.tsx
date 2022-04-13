@@ -1,12 +1,5 @@
+import { Mode } from '../../models/Mode';
 import './Toolbar.scss';
-
-export enum Mode {
-    SelectPoint,
-    SelectArea,
-    DrawTriangle,
-    DrawRectangle,
-    DrawCircle
-}
 
 interface ToolbarProps {
     currentMode: Mode,

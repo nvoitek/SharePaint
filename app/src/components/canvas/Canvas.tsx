@@ -1,8 +1,10 @@
 import './Canvas.scss';
-import React, { useState, useRef } from 'react';
-import { Mode } from '../toolbar/Toolbar';
-import { drawOnCanvas, Coord2D, checkIfComplete } from '../../utils/draw';
+import React, { useState, useRef, useEffect } from 'react';
+import { drawOnCanvas, checkIfComplete } from '../../utils/draw';
 import axios from 'axios';
+import { Shape } from '../../models/Shape';
+import { Coord2D } from '../../models/Coord2D';
+import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
 
 interface CanvasProps {
     currentMode: Mode
@@ -14,16 +16,10 @@ export function Canvas(props: CanvasProps) {
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [drawingPoints, setDrawingPoints] = useState<Coord2D[]>([]);
 
-    const modeIsDraw = () => {
-        if (props.currentMode === Mode.DrawTriangle || props.currentMode === Mode.DrawRectangle || props.currentMode === Mode.DrawCircle) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
-        if (modeIsDraw()) {
+        if (isDrawMode(props.currentMode)) {
             draw(event);
         } else {
             select();
@@ -51,18 +47,19 @@ export function Canvas(props: CanvasProps) {
 
         let clickPoint = getClickCoord2D(canvasRef.current, event);
         let newDrawingPoints = [...drawingPoints, clickPoint];
+        let shapeType = getShapeType(props.currentMode);
 
         if (!isDrawing) {
             setIsDrawing(true);
             setDrawingPoints(newDrawingPoints);
 
-        } else if (checkIfComplete(newDrawingPoints, props.currentMode)) {
-            drawOnCanvas(ctx, newDrawingPoints, props.currentMode)
+        } else if (checkIfComplete(newDrawingPoints, shapeType)) {
+            drawOnCanvas(ctx, newDrawingPoints, shapeType, "black")
 
             axios
                 .post("/api/shapes", {
                     author: 'test',
-                    shapeType: props.currentMode,
+                    shapeType: getShapeType(props.currentMode),
                     points: newDrawingPoints
                 })
                 .then(res => console.log(res));
@@ -79,12 +76,34 @@ export function Canvas(props: CanvasProps) {
 
     }
 
+    useEffect(() => {
+        if (!canvasRef || !canvasRef.current) {
+            return;
+        }
+
+        let ctx = canvasRef.current.getContext("2d");
+
+        if (!ctx) {
+            return;
+        }
+
+        axios
+            .get("/api/shapes")
+            .then(res => {
+                for (let item of res.data) {
+                    let shape = item as Shape;
+                    drawOnCanvas(ctx!, shape.points, shape.shapeType, "red");
+                }
+            });
+
+    }, [canvasRef])
+
     return (
         <canvas
             ref={canvasRef}
             // TODO calculate canvas size based on available space
             width={1200} height={800}
-            className={`canvas ${(modeIsDraw()) ? 'draw-cursor' : ''}`}
+            className={`canvas ${(isDrawMode(props.currentMode)) ? 'draw-cursor' : ''}`}
             onClick={onClick}
         >
             Your browser does not support the canvas element.
