@@ -12,7 +12,6 @@ export function Canvas(props: CanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [drawingPoints, setDrawingPoints] = useState<Coord2D[]>([]);
-    // const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
 
 
     const modeIsDraw = () => {
