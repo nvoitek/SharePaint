@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.API", "SharePaint.API\SharePaint.API.csproj", "{C0750106-B29E-48B7-A505-B9304EDEDF5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharePaint.API", "SharePaint.API\SharePaint.API.csproj", "{C0750106-B29E-48B7-A505-B9304EDEDF5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.Models", "SharePaint.Models\SharePaint.Models.csproj", "{21BD529B-B152-42EF-A6F2-81049DA52CAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0750106-B29E-48B7-A505-B9304EDEDF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21BD529B-B152-42EF-A6F2-81049DA52CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21BD529B-B152-42EF-A6F2-81049DA52CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21BD529B-B152-42EF-A6F2-81049DA52CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21BD529B-B152-42EF-A6F2-81049DA52CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
