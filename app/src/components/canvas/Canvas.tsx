@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
+import iwanthue from 'iwanthue';
 
 interface CanvasProps {
     currentMode: Mode
@@ -90,9 +91,24 @@ export function Canvas(props: CanvasProps) {
         axios
             .get("/api/shapes")
             .then(res => {
+                let authors: any[] = [];
+                for (let item of res.data) {
+                    if (!authors.find(x => x.author === item.author)) {
+                        authors.push({
+                            author: item.author,
+                            id: authors.length
+                        });
+                    }
+                }
+
+                let palette = iwanthue(authors.length);
+                
                 for (let item of res.data) {
                     let shape = item as Shape;
-                    drawOnCanvas(ctx!, shape.points, shape.shapeType, "red");
+
+                    let color = palette[authors.find(x => x.author === item.author).id];
+
+                    drawOnCanvas(ctx!, shape.points, shape.shapeType, color);
                 }
             });
 
