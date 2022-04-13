@@ -91,6 +91,8 @@ export function Canvas(props: CanvasProps) {
         axios
             .get("/api/shapes")
             .then(res => {
+                // NOT PART OF MVP : different colors for different users
+                // TODO: Optimize double iteration
                 let authors: any[] = [];
                 for (let item of res.data) {
                     if (!authors.find(x => x.author === item.author)) {
