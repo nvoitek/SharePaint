@@ -2,6 +2,7 @@ import './Canvas.scss';
 import React, { useState, useRef } from 'react';
 import { Mode } from '../toolbar/Toolbar';
 import { drawOnCanvas, Coord2D, checkIfComplete } from '../../utils/draw';
+import axios from 'axios';
 
 interface CanvasProps {
     currentMode: Mode
@@ -12,7 +13,6 @@ export function Canvas(props: CanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [drawingPoints, setDrawingPoints] = useState<Coord2D[]>([]);
-
 
     const modeIsDraw = () => {
         if (props.currentMode === Mode.DrawTriangle || props.currentMode === Mode.DrawRectangle || props.currentMode === Mode.DrawCircle) {
@@ -32,8 +32,9 @@ export function Canvas(props: CanvasProps) {
 
     const getClickCoord2D = (canvas: HTMLCanvasElement, event: React.MouseEvent<HTMLElement>): Coord2D => {
         return {
-            x: event.clientX - canvas.getBoundingClientRect().x,
-            y: event.clientY - canvas.getBoundingClientRect().y
+            // TODO: Decide whether to use int or double in the model
+            x: Math.round(event.clientX - canvas.getBoundingClientRect().x),
+            y: Math.round(event.clientY - canvas.getBoundingClientRect().y)
         };
     }
 
@@ -57,6 +58,15 @@ export function Canvas(props: CanvasProps) {
 
         } else if (checkIfComplete(newDrawingPoints, props.currentMode)) {
             drawOnCanvas(ctx, newDrawingPoints, props.currentMode)
+
+            axios
+                .post("/api/shapes", {
+                    author: 'test',
+                    shapeType: props.currentMode,
+                    points: newDrawingPoints
+                })
+                .then(res => console.log(res));
+
             setIsDrawing(false);
             setDrawingPoints([]);
 
