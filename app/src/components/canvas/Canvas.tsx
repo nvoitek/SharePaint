@@ -4,11 +4,12 @@ import { drawOnCanvas, checkIfComplete } from '../../utils/draw';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
-import iwanthue from 'iwanthue';
-import { createShape, getShapes } from '../../services/ShapeService';
+import { createShape } from '../../services/ShapeService';
 
 interface CanvasProps {
-    currentMode: Mode
+    currentMode: Mode,
+    usersColorsMap: {[user: string] : string},
+    shapes: Shape[]
 }
 
 export function Canvas(props: CanvasProps) {
@@ -91,35 +92,11 @@ export function Canvas(props: CanvasProps) {
             return;
         }
 
-        getShapes()
-            .then(shapes => {
-                // NOT PART OF MVP : different colors for different users
-                // TODO: Optimize double iteration
-                let authors: any[] = [];
-                for (let shape of shapes) {
-                    if (!authors.find(x => x.author === shape.author)) {
-                        authors.push({
-                            author: shape.author,
-                            id: authors.length
-                        });
-                    }
-                }
+        for (let shape of props.shapes) {
+            drawOnCanvas(ctx!, shape.points, shape.shapeType, props.usersColorsMap[shape.author]);
+        }
 
-                let palette: string[] = [];
-                if (authors.length <= 2) {
-                    palette = ["red", "blue"];
-                } else {
-                    palette = iwanthue(authors.length);
-                }
-
-                for (let shape of shapes) {
-                    let color = palette[authors.find(x => x.author === shape.author).id];
-
-                    drawOnCanvas(ctx!, shape.points, shape.shapeType, color);
-                }
-            });
-
-    }, [canvasRef])
+    }, [canvasRef, props.usersColorsMap, props.shapes])
 
     return (
         <canvas
