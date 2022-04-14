@@ -7,10 +7,14 @@ import { Legend } from './components/legend/Legend';
 import { Shape } from './models/Shape';
 import { getShapes } from './services/ShapeService';
 import iwanthue from 'iwanthue';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ContentLoader from 'react-content-loader';
 
 function App() {
 
   const [mode, setMode] = useState<Mode>(Mode.SelectPoint);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [usersColorsMap, setUsersColorsMap] = useState<{ [user: string]: string }>({});
   const [shapes, setShapes] = useState<Shape[]>([]);
 
@@ -40,14 +44,40 @@ function App() {
         setUsersColorsMap(newUsersColorsMap);
         setShapes(shapes);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        toast.error("Failed getting shapes", {})
+      })
+      .finally(()=> {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
     <div className="App">
       <Toolbar currentMode={mode} setMode={setMode} />
-      <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes}/>
-      <Legend usersColorsMap={usersColorsMap} />
+
+      { (isLoading) ? (
+        <ContentLoader />
+      ) : (
+        <>
+          <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} />
+          <Legend usersColorsMap={usersColorsMap} />
+        </>
+      )}
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <ToastContainer />
     </div>
   );
 }

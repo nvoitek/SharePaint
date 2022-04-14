@@ -5,10 +5,11 @@ import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
 import { createShape } from '../../services/ShapeService';
+import { toast } from 'react-toastify';
 
 interface CanvasProps {
     currentMode: Mode,
-    usersColorsMap: {[user: string] : string},
+    usersColorsMap: { [user: string]: string },
     shapes: Shape[]
 }
 
@@ -62,7 +63,12 @@ export function Canvas(props: CanvasProps) {
                 points: newDrawingPoints
             }
 
-            createShape(shape).then(id => console.log(id)).catch(err => console.log(err));
+            createShape(shape)
+                .then(id => console.log(id))
+                .catch(err => {
+                    console.log(err)
+                    toast.error("Failed getting shapes", {})
+                });
 
             setIsDrawing(false);
             setDrawingPoints([]);
