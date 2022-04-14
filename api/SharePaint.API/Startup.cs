@@ -32,6 +32,7 @@ namespace SharePaint.API
 
             services.AddSingleton<IMongoDbShapeContext, MongoDbShapeContext>();
             services.AddSingleton<IShapeRepository, ShapeRepository>();
+            services.AddSingleton<IShapeCheckerService, ShapeCheckerService>();
             services.AddSingleton<IShapeService, ShapeService>();
 
             services.AddControllers().AddNewtonsoftJson();

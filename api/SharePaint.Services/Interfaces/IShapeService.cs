@@ -15,5 +15,9 @@ namespace SharePaint.Services.Interfaces
         Task Update(Shape shapeIn);
 
         Task Remove(string id);
+
+        Task<List<Shape>> GetUnderPoint(Coord2D point);
+
+        Task<List<Shape>> GetInsideRectangle(Coord2D[] points);
     }
 }
