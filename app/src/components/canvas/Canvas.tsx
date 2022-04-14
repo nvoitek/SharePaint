@@ -1,14 +1,15 @@
 import './Canvas.scss';
 import React, { useState, useRef, useEffect } from 'react';
 import { drawOnCanvas, checkIfComplete } from '../../utils/draw';
-import axios from 'axios';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
-import iwanthue from 'iwanthue';
+import { createShape } from '../../services/ShapeService';
 
 interface CanvasProps {
-    currentMode: Mode
+    currentMode: Mode,
+    usersColorsMap: {[user: string] : string},
+    shapes: Shape[]
 }
 
 export function Canvas(props: CanvasProps) {
@@ -16,8 +17,6 @@ export function Canvas(props: CanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [drawingPoints, setDrawingPoints] = useState<Coord2D[]>([]);
-
-
 
     const onClick = (event: React.MouseEvent<HTMLElement>) => {
         if (isDrawMode(props.currentMode)) {
@@ -57,13 +56,13 @@ export function Canvas(props: CanvasProps) {
         } else if (checkIfComplete(newDrawingPoints, shapeType)) {
             drawOnCanvas(ctx, newDrawingPoints, shapeType, "black")
 
-            axios
-                .post("/api/shapes", {
-                    author: 'test',
-                    shapeType: getShapeType(props.currentMode),
-                    points: newDrawingPoints
-                })
-                .then(res => console.log(res));
+            let shape: Shape = {
+                author: 'test',
+                shapeType: getShapeType(props.currentMode),
+                points: newDrawingPoints
+            }
+
+            createShape(shape).then(id => console.log(id)).catch(err => console.log(err));
 
             setIsDrawing(false);
             setDrawingPoints([]);
@@ -78,6 +77,11 @@ export function Canvas(props: CanvasProps) {
     }
 
     useEffect(() => {
+        setIsDrawing(false);
+        setDrawingPoints([]);
+    }, [props.currentMode]);
+
+    useEffect(() => {
         if (!canvasRef || !canvasRef.current) {
             return;
         }
@@ -88,38 +92,11 @@ export function Canvas(props: CanvasProps) {
             return;
         }
 
-        axios
-            .get("/api/shapes")
-            .then(res => {
-                // NOT PART OF MVP : different colors for different users
-                // TODO: Optimize double iteration
-                let authors: any[] = [];
-                for (let item of res.data) {
-                    if (!authors.find(x => x.author === item.author)) {
-                        authors.push({
-                            author: item.author,
-                            id: authors.length
-                        });
-                    }
-                }
+        for (let shape of props.shapes) {
+            drawOnCanvas(ctx!, shape.points, shape.shapeType, props.usersColorsMap[shape.author]);
+        }
 
-                let palette: string[] = [];
-                if (authors.length <= 2) {
-                    palette = ["red", "blue"];
-                } else {
-                    palette = iwanthue(authors.length);
-                }
-                
-                for (let item of res.data) {
-                    let shape = item as Shape;
-
-                    let color = palette[authors.find(x => x.author === item.author).id];
-
-                    drawOnCanvas(ctx!, shape.points, shape.shapeType, color);
-                }
-            });
-
-    }, [canvasRef])
+    }, [canvasRef, props.usersColorsMap, props.shapes])
 
     return (
         <canvas
