@@ -7,14 +7,17 @@ interface LegendProps {
 export function Legend(props: LegendProps) {
 
     return (
-        <>
+        <div className='legend'>
         {
             Object.keys(props.usersColorsMap).map((key: string) => {
                 return (
-                    <p>{key} - {props.usersColorsMap[key]}</p>
-                );
+                    <div className='row'>
+                        <span className="dot" style={{backgroundColor: props.usersColorsMap[key]}}></span>
+                        <p>{key}</p>
+                    </div>
+                )
             })
         }
-        </>
+        </div>
     );
 }

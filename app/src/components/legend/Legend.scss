@@ -1,0 +1,21 @@
+.legend {
+    display: flex;
+    flex-direction: column;
+
+    .row {
+        display: flex;
+        margin: 10px;
+
+        p {
+            margin: 0;
+        }
+
+        .dot {
+            margin-right: 10px;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            text-align: center;
+        }
+    }
+}
