@@ -7,6 +7,8 @@ import { Legend } from './components/legend/Legend';
 import { Shape } from './models/Shape';
 import { getShapes } from './services/ShapeService';
 import iwanthue from 'iwanthue';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -40,14 +42,29 @@ function App() {
         setUsersColorsMap(newUsersColorsMap);
         setShapes(shapes);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        toast.error("Failed getting shapes", {})
+      });
   }, []);
 
   return (
     <div className="App">
       <Toolbar currentMode={mode} setMode={setMode} />
-      <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes}/>
+      <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} />
       <Legend usersColorsMap={usersColorsMap} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+      <ToastContainer />
     </div>
   );
 }
