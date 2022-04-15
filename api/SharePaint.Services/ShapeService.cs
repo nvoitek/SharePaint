@@ -9,10 +9,12 @@ namespace SharePaint.Services
     public class ShapeService : IShapeService
     {
         private readonly IShapeRepository _shapeRepository;
+        private readonly IShapeCheckerService _shapeChecker;
 
-        public ShapeService(IShapeRepository shapeRepository)
+        public ShapeService(IShapeRepository shapeRepository, IShapeCheckerService shapeChecker)
         {
             _shapeRepository = shapeRepository;
+            _shapeChecker = shapeChecker;
         }
 
         public async Task<List<Shape>> Get()
@@ -38,6 +40,44 @@ namespace SharePaint.Services
         public async Task Remove(string id)
         {
             await _shapeRepository.Delete(id);
+        }
+
+        public async Task<List<Shape>> GetUnderPoint(Coord2D point)
+        {
+            var allShapes = await _shapeRepository.Get();
+
+            var shapes = new List<Shape>();
+
+            foreach (var shape in allShapes)
+            {
+                var isShapeUnderPoint = await Task.Run(() => _shapeChecker.IsShapeUnderPoint(shape, point));
+
+                if (isShapeUnderPoint)
+                {
+                    shapes.Add(shape);
+                }
+            }
+
+            return shapes;
+        }
+
+        public async Task<List<Shape>> GetInsideRectangle(Coord2D[] points)
+        {
+            var allShapes = await _shapeRepository.Get();
+
+            var shapes = new List<Shape>();
+
+            foreach (var shape in allShapes)
+            {
+                var isShapeUnderPoint = await Task.Run(() =>_shapeChecker.IsShapeInsideRectangle(shape, points));
+
+                if (isShapeUnderPoint)
+                {
+                    shapes.Add(shape);
+                }
+            }
+
+            return shapes;
         }
     }
 }
