@@ -50,7 +50,7 @@ namespace SharePaint.Services
 
             foreach (var shape in allShapes)
             {
-                var isShapeUnderPoint = await _shapeChecker.IsShapeUnderPoint(shape, point);
+                var isShapeUnderPoint = await Task.Run(() => _shapeChecker.IsShapeUnderPoint(shape, point));
 
                 if (isShapeUnderPoint)
                 {
@@ -69,7 +69,7 @@ namespace SharePaint.Services
 
             foreach (var shape in allShapes)
             {
-                var isShapeUnderPoint = await _shapeChecker.IsShapeInsideRectangle(shape, points);
+                var isShapeUnderPoint = await Task.Run(() =>_shapeChecker.IsShapeInsideRectangle(shape, points));
 
                 if (isShapeUnderPoint)
                 {

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharePaint.API", "SharePain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharePaint.Models", "SharePaint.Models\SharePaint.Models.csproj", "{21BD529B-B152-42EF-A6F2-81049DA52CAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.Repository", "SharePaint.Repository\SharePaint.Repository.csproj", "{F635AE82-4113-4A97-A90D-2974A440AF1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharePaint.Repository", "SharePaint.Repository\SharePaint.Repository.csproj", "{F635AE82-4113-4A97-A90D-2974A440AF1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.Services", "SharePaint.Services\SharePaint.Services.csproj", "{AF817B6E-B850-49D2-B512-A4868DEDB379}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharePaint.Services", "SharePaint.Services\SharePaint.Services.csproj", "{AF817B6E-B850-49D2-B512-A4868DEDB379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharePaint.Services.UnitTests", "SharePaint.Services.UnitTests\SharePaint.Services.UnitTests.csproj", "{699896EC-212F-4DD6-B1EA-0CEE2E300D0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{AF817B6E-B850-49D2-B512-A4868DEDB379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF817B6E-B850-49D2-B512-A4868DEDB379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF817B6E-B850-49D2-B512-A4868DEDB379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{699896EC-212F-4DD6-B1EA-0CEE2E300D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{699896EC-212F-4DD6-B1EA-0CEE2E300D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{699896EC-212F-4DD6-B1EA-0CEE2E300D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{699896EC-212F-4DD6-B1EA-0CEE2E300D0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
