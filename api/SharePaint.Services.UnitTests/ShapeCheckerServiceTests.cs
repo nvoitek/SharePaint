@@ -1514,6 +1514,140 @@ namespace SharePaint.Services.UnitTests
         #endregion
 
         #region Circle
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnTrue_When_PointIsOn_Circle()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 0, Y = 50 };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(circle, point);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnTrue_When_PointIsOn_Circle_WithinTolerance()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 0 + (int)(.75 * _sut.Tolerance), Y = 50 + (int)(.75 * _sut.Tolerance) };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(circle, point);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnFalse_When_PointIsOn_Circle_NotWithinTolerance()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * _sut.Tolerance), Y = 50 + (int)(1.25 * _sut.Tolerance) };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(circle, point);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnTrue_When_PointIsInside_Circle()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 50, Y = 50 };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(circle, point);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnFalse_When_PointIsOutside_Circle()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 125, Y = 125 };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(circle, point);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
 
         #endregion
     }
