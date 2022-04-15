@@ -16,9 +16,9 @@ namespace SharePaint.Services
                 case ShapeType.Triangle:
                     return IsTriangleUnderPoint(shape, point);
                 case ShapeType.Rectangle:
-                    return IsTriangleUnderPoint(shape, point);
+                    return IsRectangleUnderPoint(shape, point);
                 case ShapeType.Circle:
-                    return IsTriangleUnderPoint(shape, point);
+                    return IsCircleUnderPoint(shape, point);
                 default:
                     return false;
             }
@@ -159,7 +159,7 @@ namespace SharePaint.Services
             var y1 = rectangle.Points[0].Y;
             var y2 = rectangle.Points[1].Y;
 
-            if (LessOrEqual(x1, point.X) && LessOrEqual(point.X,x2))
+            if ((LessOrEqual(x1, point.X) && LessOrEqual(point.X,x2)) || LessOrEqual(x2, point.X) && LessOrEqual(point.X, x1))
             {
                 if (AreEqual(y1, point.Y) || AreEqual(y2, point.Y))
                 {
@@ -167,7 +167,7 @@ namespace SharePaint.Services
                 }
             }
 
-            if (LessOrEqual(y1, point.Y) && LessOrEqual(point.Y, y2))
+            if ((LessOrEqual(y1, point.Y) && LessOrEqual(point.Y, y2)) || LessOrEqual(y2, point.Y) && LessOrEqual(point.Y, y1))
             {
                 if (AreEqual(x1, point.X) || AreEqual(x2, point.X))
                 {
