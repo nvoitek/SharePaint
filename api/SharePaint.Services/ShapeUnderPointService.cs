@@ -1,14 +1,11 @@
 ﻿using SharePaint.Models;
 using SharePaint.Services.Interfaces;
-using System;
+using SharePaint.Services.Utils;
 
 namespace SharePaint.Services
 {
-    public class ShapeCheckerService : IShapeCheckerService
+    public class ShapeUnderPointService : IShapeUnderPointService
     {
-        private const double TOLERANCE = 5;
-        public double Tolerance { get { return TOLERANCE; } }
-
         public bool IsShapeUnderPoint(Shape shape, Coord2D point)
         {
             switch (shape.ShapeType)
@@ -38,26 +35,26 @@ namespace SharePaint.Services
             var y2 = triangle.Points[1].Y;
             var y3 = triangle.Points[2].Y;
 
-            if (AreEqual(x1, point.X) && AreEqual(y1, point.Y))
+            if (Double.AreEqual(x1, point.X) && Double.AreEqual(y1, point.Y))
             {
                 return true;
             }
 
-            if (AreEqual(x2, point.X) && AreEqual(y2, point.Y))
+            if (Double.AreEqual(x2, point.X) && Double.AreEqual(y2, point.Y))
             {
                 return true;
             }
 
-            if (AreEqual(x3, point.X) && AreEqual(y3, point.Y))
+            if (Double.AreEqual(x3, point.X) && Double.AreEqual(y3, point.Y))
             {
                 return true;
             }
 
-            if ((LessOrEqual(x1, point.X) && LessOrEqual(point.X, x2)) || (LessOrEqual(x2, point.X) && LessOrEqual(point.X, x1)))
+            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X, x2)) || (Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x1)))
             {
-                if (AreEqual(x1,x2))
+                if (Double.AreEqual(x1,x2))
                 {
-                    if ((LessOrEqual(y1, point.Y) && LessOrEqual(point.Y, y2)) || LessOrEqual(y2, point.Y) && LessOrEqual(point.Y, y1))
+                    if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y2)) || Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y1))
                     {
                         return true;
                     }
@@ -66,7 +63,7 @@ namespace SharePaint.Services
                 {
                     var b = (x1 * y2 - x2 * y1) / (x1 - x2);
                     double a;
-                    if (AreEqual(x1, 0))
+                    if (Double.AreEqual(x1, 0))
                     {
                         a = (y2 - b) / x2;
                     }
@@ -76,7 +73,7 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (AreEqual(point.Y, yOnSide))
+                    if (Double.AreEqual(point.Y, yOnSide))
                     {
                         return true;
                     }
@@ -85,11 +82,11 @@ namespace SharePaint.Services
 
             }
 
-            if ((LessOrEqual(x1, point.X) && LessOrEqual(point.X, x3)) || (LessOrEqual(x3, point.X) && LessOrEqual(point.X, x1)))
+            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X, x3)) || (Double.LessOrEqual(x3, point.X) && Double.LessOrEqual(point.X, x1)))
             {
-                if (AreEqual(x1, x3))
+                if (Double.AreEqual(x1, x3))
                 {
-                    if ((LessOrEqual(y1, point.Y) && LessOrEqual(point.Y, y3)) || LessOrEqual(y3, point.Y) && LessOrEqual(point.Y, y1))
+                    if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y3)) || Double.LessOrEqual(y3, point.Y) && Double.LessOrEqual(point.Y, y1))
                     {
                         return true;
                     }
@@ -98,7 +95,7 @@ namespace SharePaint.Services
                 {
                     var b = (x1 * y3 - x3 * y1) / (x1 - x3);
                     double a;
-                    if (AreEqual(x1, 0))
+                    if (Double.AreEqual(x1, 0))
                     {
                         a = (y3 - b) / x3;
                     }
@@ -108,18 +105,18 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (AreEqual(point.Y, yOnSide))
+                    if (Double.AreEqual(point.Y, yOnSide))
                     {
                         return true;
                     }
                 }
             }
 
-            if ((LessOrEqual(x2, point.X) && LessOrEqual(point.X, x3)) || (LessOrEqual(x3, point.X) && LessOrEqual(point.X, x2)))
+            if ((Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x3)) || (Double.LessOrEqual(x3, point.X) && Double.LessOrEqual(point.X, x2)))
             {
-                if (AreEqual(x2, x3))
+                if (Double.AreEqual(x2, x3))
                 {
-                    if ((LessOrEqual(y2, point.Y) && LessOrEqual(point.Y, y3)) || LessOrEqual(y3, point.Y) && LessOrEqual(point.Y, y2))
+                    if ((Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y3)) || Double.LessOrEqual(y3, point.Y) && Double.LessOrEqual(point.Y, y2))
                     {
                         return true;
                     }
@@ -128,7 +125,7 @@ namespace SharePaint.Services
                 {
                     var b = (x2 * y3 - x3 * y2) / (x2 - x3);
                     double a;
-                    if (AreEqual(x2, 0))
+                    if (Double.AreEqual(x2, 0))
                     {
                         a = (y3 - b) / x3;
                     }
@@ -138,7 +135,7 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (AreEqual(point.Y, yOnSide))
+                    if (Double.AreEqual(point.Y, yOnSide))
                     {
                         return true;
                     }
@@ -159,17 +156,17 @@ namespace SharePaint.Services
             var y1 = rectangle.Points[0].Y;
             var y2 = rectangle.Points[1].Y;
 
-            if ((LessOrEqual(x1, point.X) && LessOrEqual(point.X,x2)) || LessOrEqual(x2, point.X) && LessOrEqual(point.X, x1))
+            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X,x2)) || Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x1))
             {
-                if (AreEqual(y1, point.Y) || AreEqual(y2, point.Y))
+                if (Double.AreEqual(y1, point.Y) || Double.AreEqual(y2, point.Y))
                 {
                     return true;
                 }
             }
 
-            if ((LessOrEqual(y1, point.Y) && LessOrEqual(point.Y, y2)) || LessOrEqual(y2, point.Y) && LessOrEqual(point.Y, y1))
+            if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y2)) || Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y1))
             {
-                if (AreEqual(x1, point.X) || AreEqual(x2, point.X))
+                if (Double.AreEqual(x1, point.X) || Double.AreEqual(x2, point.X))
                 {
                     return true;
                 }
@@ -183,44 +180,10 @@ namespace SharePaint.Services
             // its distance from circle center must be equal to radius
             // ~5% equality tolerance
             var circleCenter = circle.Points[0];
-            var radius = GetDistance(circleCenter, circle.Points[1]);
-            var distanceFromCenter = GetDistance(circleCenter, point);
+            var radius = Double.GetDistance(circleCenter, circle.Points[1]);
+            var distanceFromCenter = Double.GetDistance(circleCenter, point);
 
-            return AreEqual(radius, distanceFromCenter);
-        }
-        public bool IsShapeInsideRectangle(Shape shape, Coord2D[] points)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool IsTriangleInsideRectangle(Shape triangle, Coord2D[] points)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool IsRectangleInsideRectangle(Shape rectangle, Coord2D[] points)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private bool IsCircleInsideRectangle(Shape circle, Coord2D[] points)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private double GetDistance(Coord2D from, Coord2D to)
-        {
-            return Math.Sqrt(Math.Pow(to.X - from.X, 2) + Math.Pow(to.Y - from.Y, 2));
-        }
-
-        private bool AreEqual(double d1, double d2)
-        {
-            return Math.Abs(d1 - d2) <= TOLERANCE;
-        }
-
-        private bool LessOrEqual(double d1, double d2)
-        {
-            return d1 < d2 || AreEqual(d1, d2);
+            return Double.AreEqual(radius, distanceFromCenter);
         }
     }
 }

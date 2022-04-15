@@ -2,9 +2,8 @@
 
 namespace SharePaint.Services.Interfaces
 {
-    public interface IShapeCheckerService
+    public interface IShapeUnderPointService
     {
         bool IsShapeUnderPoint(Shape shape, Coord2D point);
-        bool IsShapeInsideRectangle(Shape shape, Coord2D[] points);
     }
 }
