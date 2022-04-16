@@ -21,6 +21,23 @@ export function drawOnCanvas(context: CanvasRenderingContext2D, points: Coord2D[
     }
 }
 
+export function normalizePoints(points: Coord2D[], widthProportion: number, heightProportion: number) : Coord2D[] {
+    if (widthProportion === 1 && heightProportion === 1) {
+        return points;
+    }
+
+    let normalizedPoints: Coord2D[] = [];
+
+    for (let i = 0; i < points.length; i++) {
+        let newX = heightProportion * points[i].x;
+        let newY = widthProportion * points[i].y;
+
+        normalizedPoints.push({x: newX, y:newY});
+    }
+
+    return normalizedPoints;
+}
+
 function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[], color: string) {
     if (points.length !== 3) {
         return;

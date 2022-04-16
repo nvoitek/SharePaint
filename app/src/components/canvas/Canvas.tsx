@@ -1,6 +1,6 @@
 import './Canvas.scss';
 import React, { useState, useRef, useEffect } from 'react';
-import { drawOnCanvas, checkIfComplete } from '../../utils/draw';
+import { drawOnCanvas, checkIfComplete, normalizePoints } from '../../utils/draw';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType } from '../../models/Mode';
@@ -10,7 +10,12 @@ import { toast } from 'react-toastify';
 interface CanvasProps {
     currentMode: Mode,
     usersColorsMap: { [user: string]: string },
-    shapes: Shape[]
+    shapes: Shape[],
+    // TODO calculate canvas size
+    canvasWidth: number,
+    canvasHeight: number
+    widthProportion: number,
+    heightProportion: number,
 }
 
 export function Canvas(props: CanvasProps) {
@@ -54,7 +59,8 @@ export function Canvas(props: CanvasProps) {
             setDrawingPoints(newDrawingPoints);
 
         } else if (checkIfComplete(newDrawingPoints, shapeType)) {
-            drawOnCanvas(ctx, newDrawingPoints, shapeType, "black")
+
+            drawOnCanvas(ctx, normalizePoints(newDrawingPoints, props.widthProportion, props.heightProportion), shapeType, "black")
 
             let shape: Shape = {
                 author: 'test',
@@ -98,7 +104,7 @@ export function Canvas(props: CanvasProps) {
         }
 
         for (let shape of props.shapes) {
-            drawOnCanvas(ctx!, shape.points, shape.shapeType, props.usersColorsMap[shape.author]);
+            drawOnCanvas(ctx!, normalizePoints(shape.points, props.widthProportion, props.heightProportion), shape.shapeType, props.usersColorsMap[shape.author]);
         }
 
     }, [canvasRef, props.usersColorsMap, props.shapes])
@@ -106,8 +112,7 @@ export function Canvas(props: CanvasProps) {
     return (
         <canvas
             ref={canvasRef}
-            // TODO calculate canvas size based on available space
-            width={1200} height={800}
+            width={props.canvasWidth} height={props.canvasHeight}
             className={`canvas ${(isDrawMode(props.currentMode)) ? 'draw-cursor' : ''}`}
             onClick={onClick}
         >
