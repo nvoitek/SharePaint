@@ -36,8 +36,8 @@ namespace SharePaint.Services.Utils
                     }
 
                     // We have to check what would be the value of y if x was on the line and compare that to the real y
-                    var yOnSide = a * point.X + b;
-                    if (point.Y.IsEqual(yOnSide))
+                    var yOnLine = a * point.X + b;
+                    if (point.Y.IsEqual(yOnLine))
                     {
                         return true;
                     }
