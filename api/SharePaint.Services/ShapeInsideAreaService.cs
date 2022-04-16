@@ -78,6 +78,7 @@ namespace SharePaint.Services
         {
             // circle's center has to be within area
             // circle's center + radius in four directions have to be within area
+            // to be precise it's enough to check the diagonal points, if those are within area, all four would be
             // ~5% equality tolerance
             bool insideArea = true;
             var circleCenter = circle.Points[0];
@@ -89,28 +90,14 @@ namespace SharePaint.Services
 
             var radius = circleCenter.DistanceTo(circle.Points[1]);
             var testedPointX = circleCenter.X + radius;
-            var testedPointY = circleCenter.Y;
+            var testedPointY = circleCenter.Y + radius;
 
-            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
-            {
-                insideArea = false;
-            }
-
-            testedPointX = circleCenter.X;
-            testedPointY = circleCenter.Y + radius;
             if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
             testedPointX = circleCenter.X - radius;
-            testedPointY = circleCenter.Y;
-            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
-            {
-                insideArea = false;
-            }
-
-            testedPointX = circleCenter.X;
             testedPointY = circleCenter.Y - radius;
             if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
