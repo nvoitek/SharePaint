@@ -24,7 +24,7 @@ namespace SharePaint.Services
         private bool IsTriangleInsideArea(Shape triangle, Area2D area)
         {
             // all vertices have to be within area
-            // ~5% equality tolerance
+            // some equality tolerance
             bool insideArea = true;
             var x1 = triangle.Points[0].X;
             var x2 = triangle.Points[1].X;
@@ -54,7 +54,7 @@ namespace SharePaint.Services
         private bool IsRectangleInsideArea(Shape rectangle, Area2D area)
         {
             // all vertices have to be within area, but because it's rectangle, we only need to check two
-            // ~5% equality tolerance
+            // some equality tolerance
             bool insideArea = true;
             var x1 = rectangle.Points[0].X;
             var y1 = rectangle.Points[0].Y;
@@ -79,7 +79,7 @@ namespace SharePaint.Services
             // circle's center has to be within area
             // circle's center + radius in four directions have to be within area
             // to be precise it's enough to check the diagonal points, if those are within area, all four would be
-            // ~5% equality tolerance
+            // some equality tolerance
             bool insideArea = true;
             var circleCenter = circle.Points[0];
 

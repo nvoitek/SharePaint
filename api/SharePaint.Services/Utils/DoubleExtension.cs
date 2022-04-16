@@ -4,7 +4,7 @@ namespace SharePaint.Services.Utils
 {
     public static class DoubleExtension
     {
-        private const double TOLERANCE = 5;
+        private const double TOLERANCE = 2;
         public static double Tolerance { get { return TOLERANCE; } }
 
         public static bool IsEqual(this double d1, double d2)

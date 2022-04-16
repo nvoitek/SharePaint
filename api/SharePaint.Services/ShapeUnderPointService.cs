@@ -26,7 +26,7 @@ namespace SharePaint.Services
             // three line function y = ax + b
             // we check if point is on the line
             // then check if point on line is in bounds
-            // ~5% equality tolerance
+            // some equality tolerance
 
             var x1 = triangle.Points[0].X;
             var x2 = triangle.Points[1].X;
@@ -72,7 +72,7 @@ namespace SharePaint.Services
         {
             // it has to lie on one of four sides
             // we check if it has x in bounds for left or right y, or y in bounds for top or bottom x
-            // ~5% equality tolerance
+            // some equality tolerance
 
             var x1 = rectangle.Points[0].X;
             var x2 = rectangle.Points[1].X;
@@ -101,7 +101,7 @@ namespace SharePaint.Services
         private bool IsCircleUnderPoint(Shape circle, Coord2D point)
         {
             // its distance from circle center must be equal to radius
-            // ~5% equality tolerance
+            // some equality tolerance
             var circleCenter = circle.Points[0];
             var radius = circleCenter.DistanceTo(circle.Points[1]);
             var distanceFromCenter = circleCenter.DistanceTo(point);
