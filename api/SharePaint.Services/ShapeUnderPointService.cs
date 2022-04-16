@@ -50,96 +50,19 @@ namespace SharePaint.Services
                 return true;
             }
 
-            if (point.X.BetweenPoints(x1, x2))
+            if (point.IsOnLine(triangle.Points[0], triangle.Points[1]))
             {
-                if (x1.IsEqual(x2))
-                {
-                    if (point.Y.BetweenPoints(y1, y2))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x1 * y2 - x2 * y1) / (x1 - x2);
-                    double a;
-                    if (x1.IsEqual(0))
-                    {
-                        a = (y2 - b) / x2;
-                    }
-                    else
-                    {
-                        a = (y1 - b) / x1;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
-
-
+                return true;
             }
 
-            if (point.X.BetweenPoints(x1, x3))
+            if (point.IsOnLine(triangle.Points[0], triangle.Points[2]))
             {
-                if (x1.IsEqual(x3))
-                {
-                    if (point.Y.BetweenPoints(y1, y3))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x1 * y3 - x3 * y1) / (x1 - x3);
-                    double a;
-                    if (x1.IsEqual(0))
-                    {
-                        a = (y3 - b) / x3;
-                    }
-                    else
-                    {
-                        a = (y1 - b) / x1;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
 
-            if (point.X.BetweenPoints(x2, x3))
+            if (point.IsOnLine(triangle.Points[1], triangle.Points[2]))
             {
-                if (x2.IsEqual(x3))
-                {
-                    if (point.Y.BetweenPoints(y2, y3))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x2 * y3 - x3 * y2) / (x2 - x3);
-                    double a;
-                    if (x2.IsEqual(0))
-                    {
-                        a = (y3 - b) / x3;
-                    }
-                    else
-                    {
-                        a = (y2 - b) / x2;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
 
             return false;
