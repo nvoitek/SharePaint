@@ -240,6 +240,230 @@ namespace SharePaint.Services.UnitTests
             // Assert
             Assert.AreEqual(false, result);
         }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_CircleCenter_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 500, Y = 500 };
+            Coord2D point2 = new Coord2D() { X = 125, Y = 125 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_CircleLeft_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_CircleRight_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 90, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_CircleTop_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 10 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_CircleBottom_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Circle_IsInsideReversedArea()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Circle_IsInsideReversedArea_WithinTolerance()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_Circle_IsInsideReversedArea_NotWithinTolerance()
+        {
+            // Arrange
+            Shape circle = new Shape()
+            {
+                ShapeType = ShapeType.Circle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 50,
+                        Y = 50
+                    },
+                    new Coord2D() {
+                        X = 50,
+                        Y = 0
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
         #endregion
     }
 }
