@@ -1,5 +1,4 @@
-﻿using SharePaint.Models;
-using System;
+﻿using System;
 
 namespace SharePaint.Services.Utils
 {
@@ -8,19 +7,24 @@ namespace SharePaint.Services.Utils
         private const double TOLERANCE = 5;
         public static double Tolerance { get { return TOLERANCE; } }
 
-        public static double GetDistance(Coord2D from, Coord2D to)
-        {
-            return Math.Sqrt(Math.Pow(to.X - from.X, 2) + Math.Pow(to.Y - from.Y, 2));
-        }
-
-        public static bool AreEqual(double d1, double d2)
+        public static bool IsEqual(this double d1, double d2)
         {
             return Math.Abs(d1 - d2) <= TOLERANCE;
         }
 
-        public static bool LessOrEqual(double d1, double d2)
+        public static bool LessOrEqual(this double d1, double d2)
         {
-            return d1 < d2 || AreEqual(d1, d2);
+            return d1 < d2 || IsEqual(d1, d2);
+        }
+
+        public static bool BetweenPoints(this double x, double x1, double x2)
+        {
+            if ((LessOrEqual(x1, x) && LessOrEqual(x, x2)) || (LessOrEqual(x2, x) && LessOrEqual(x, x1)))
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

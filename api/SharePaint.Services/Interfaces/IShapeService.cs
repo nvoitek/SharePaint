@@ -18,6 +18,6 @@ namespace SharePaint.Services.Interfaces
 
         Task<List<Shape>> GetUnderPoint(Coord2D point);
 
-        Task<List<Shape>> GetInsideRectangle(Coord2D[] points);
+        Task<List<Shape>> GetInsideArea(Coord2D point1, Coord2D point2);
     }
 }

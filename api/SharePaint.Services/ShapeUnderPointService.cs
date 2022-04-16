@@ -35,26 +35,26 @@ namespace SharePaint.Services
             var y2 = triangle.Points[1].Y;
             var y3 = triangle.Points[2].Y;
 
-            if (Double.AreEqual(x1, point.X) && Double.AreEqual(y1, point.Y))
+            if (x1.IsEqual(point.X) && y1.IsEqual(point.Y))
             {
                 return true;
             }
 
-            if (Double.AreEqual(x2, point.X) && Double.AreEqual(y2, point.Y))
+            if (x2.IsEqual(point.X) && y2.IsEqual(point.Y))
             {
                 return true;
             }
 
-            if (Double.AreEqual(x3, point.X) && Double.AreEqual(y3, point.Y))
+            if (x3.IsEqual(point.X) && y3.IsEqual(point.Y))
             {
                 return true;
             }
 
-            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X, x2)) || (Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x1)))
+            if (point.X.BetweenPoints(x1, x2))
             {
-                if (Double.AreEqual(x1,x2))
+                if (x1.IsEqual(x2))
                 {
-                    if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y2)) || Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y1))
+                    if (point.Y.BetweenPoints(y1, y2))
                     {
                         return true;
                     }
@@ -63,7 +63,7 @@ namespace SharePaint.Services
                 {
                     var b = (x1 * y2 - x2 * y1) / (x1 - x2);
                     double a;
-                    if (Double.AreEqual(x1, 0))
+                    if (x1.IsEqual(0))
                     {
                         a = (y2 - b) / x2;
                     }
@@ -73,7 +73,7 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (Double.AreEqual(point.Y, yOnSide))
+                    if (point.Y.IsEqual(yOnSide))
                     {
                         return true;
                     }
@@ -82,11 +82,11 @@ namespace SharePaint.Services
 
             }
 
-            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X, x3)) || (Double.LessOrEqual(x3, point.X) && Double.LessOrEqual(point.X, x1)))
+            if (point.X.BetweenPoints(x1, x3))
             {
-                if (Double.AreEqual(x1, x3))
+                if (x1.IsEqual(x3))
                 {
-                    if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y3)) || Double.LessOrEqual(y3, point.Y) && Double.LessOrEqual(point.Y, y1))
+                    if (point.Y.BetweenPoints(y1, y3))
                     {
                         return true;
                     }
@@ -95,7 +95,7 @@ namespace SharePaint.Services
                 {
                     var b = (x1 * y3 - x3 * y1) / (x1 - x3);
                     double a;
-                    if (Double.AreEqual(x1, 0))
+                    if (x1.IsEqual(0))
                     {
                         a = (y3 - b) / x3;
                     }
@@ -105,18 +105,18 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (Double.AreEqual(point.Y, yOnSide))
+                    if (point.Y.IsEqual(yOnSide))
                     {
                         return true;
                     }
                 }
             }
 
-            if ((Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x3)) || (Double.LessOrEqual(x3, point.X) && Double.LessOrEqual(point.X, x2)))
+            if (point.X.BetweenPoints(x2, x3))
             {
-                if (Double.AreEqual(x2, x3))
+                if (x2.IsEqual(x3))
                 {
-                    if ((Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y3)) || Double.LessOrEqual(y3, point.Y) && Double.LessOrEqual(point.Y, y2))
+                    if (point.Y.BetweenPoints(y2, y3))
                     {
                         return true;
                     }
@@ -125,7 +125,7 @@ namespace SharePaint.Services
                 {
                     var b = (x2 * y3 - x3 * y2) / (x2 - x3);
                     double a;
-                    if (Double.AreEqual(x2, 0))
+                    if (x2.IsEqual(0))
                     {
                         a = (y3 - b) / x3;
                     }
@@ -135,7 +135,7 @@ namespace SharePaint.Services
                     }
                     var yOnSide = a * point.X + b;
 
-                    if (Double.AreEqual(point.Y, yOnSide))
+                    if (point.Y.IsEqual(yOnSide))
                     {
                         return true;
                     }
@@ -156,17 +156,17 @@ namespace SharePaint.Services
             var y1 = rectangle.Points[0].Y;
             var y2 = rectangle.Points[1].Y;
 
-            if ((Double.LessOrEqual(x1, point.X) && Double.LessOrEqual(point.X,x2)) || Double.LessOrEqual(x2, point.X) && Double.LessOrEqual(point.X, x1))
+            if (point.X.BetweenPoints(x1, x2))
             {
-                if (Double.AreEqual(y1, point.Y) || Double.AreEqual(y2, point.Y))
+                if (y1.IsEqual(point.Y) || y2.IsEqual(point.Y))
                 {
                     return true;
                 }
             }
 
-            if ((Double.LessOrEqual(y1, point.Y) && Double.LessOrEqual(point.Y, y2)) || Double.LessOrEqual(y2, point.Y) && Double.LessOrEqual(point.Y, y1))
+            if (point.Y.BetweenPoints(y1, y2))
             {
-                if (Double.AreEqual(x1, point.X) || Double.AreEqual(x2, point.X))
+                if (x1.IsEqual(point.X) || x2.IsEqual(point.X))
                 {
                     return true;
                 }
@@ -180,10 +180,10 @@ namespace SharePaint.Services
             // its distance from circle center must be equal to radius
             // ~5% equality tolerance
             var circleCenter = circle.Points[0];
-            var radius = Double.GetDistance(circleCenter, circle.Points[1]);
-            var distanceFromCenter = Double.GetDistance(circleCenter, point);
+            var radius = circleCenter.DistanceTo(circle.Points[1]);
+            var distanceFromCenter = circleCenter.DistanceTo(point);
 
-            return Double.AreEqual(radius, distanceFromCenter);
+            return distanceFromCenter.IsEqual(radius);
         }
     }
 }

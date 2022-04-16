@@ -126,7 +126,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(.75 * Double.Tolerance), Y = 100 + (int)(.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + .75 * Double.Tolerance, Y = 100 + .75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -157,7 +157,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(1.25 * Double.Tolerance), Y = 100 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + 1.25 * Double.Tolerance, Y = 100 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -281,7 +281,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(.75 * Double.Tolerance), Y = 50 + (int)(.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + .75 * Double.Tolerance, Y = 50 + .75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -312,7 +312,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(1.25 * Double.Tolerance), Y = 50 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + 1.25 * Double.Tolerance, Y = 50 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -498,7 +498,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(.75 * Double.Tolerance), Y = 100 + (int)(.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + .75 * Double.Tolerance, Y = 100 + .75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -529,7 +529,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(1.25 * Double.Tolerance), Y = 100 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + 1.25 * Double.Tolerance, Y = 100 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -653,7 +653,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(.75 * Double.Tolerance), Y = 50 + (int)(.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + .75 * Double.Tolerance, Y = 50 + .75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -684,7 +684,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 100 + (int)(1.25 * Double.Tolerance), Y = 50 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 100 + 1.25 * Double.Tolerance, Y = 50 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(triangle, point);
@@ -883,7 +883,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(0.75 * Double.Tolerance), Y = 100 + (int)(0.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 0.75 * Double.Tolerance, Y = 100 + 0.75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -910,7 +910,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * Double.Tolerance), Y = 100 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 1.25 * Double.Tolerance, Y = 100 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1045,7 +1045,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(0.75 * Double.Tolerance), Y = 50 + (int)(0.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 0.75 * Double.Tolerance, Y = 50 + 0.75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1072,7 +1072,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * Double.Tolerance), Y = 50 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 1.25 * Double.Tolerance, Y = 50 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1261,7 +1261,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(0.75 * Double.Tolerance), Y = 100 + (int)(0.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 0.75 * Double.Tolerance, Y = 100 + 0.75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1288,7 +1288,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * Double.Tolerance), Y = 100 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 1.25 * Double.Tolerance, Y = 100 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1423,7 +1423,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(0.75 * Double.Tolerance), Y = 50 + (int)(0.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 0.75 * Double.Tolerance, Y = 50 + 0.75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1450,7 +1450,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * Double.Tolerance), Y = 50 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 1.25 * Double.Tolerance, Y = 50 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(rectangle, point);
@@ -1560,7 +1560,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(.75 * Double.Tolerance), Y = 50 + (int)(.75 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + .75 * Double.Tolerance, Y = 50 + .75 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(circle, point);
@@ -1587,7 +1587,7 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point = new Coord2D() { X = 0 + (int)(1.25 * Double.Tolerance), Y = 50 + (int)(1.25 * Double.Tolerance) };
+            Coord2D point = new Coord2D() { X = 0 + 1.25 * Double.Tolerance, Y = 50 + 1.25 * Double.Tolerance };
 
             // Act
             bool result = _sut.IsShapeUnderPoint(circle, point);
