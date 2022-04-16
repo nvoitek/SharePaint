@@ -29,9 +29,8 @@ export function Canvas(props: CanvasProps) {
 
     const getClickCoord2D = (canvas: HTMLCanvasElement, event: React.MouseEvent<HTMLElement>): Coord2D => {
         return {
-            // TODO: Decide whether to use int or double in the model
-            x: Math.round(event.clientX - canvas.getBoundingClientRect().x),
-            y: Math.round(event.clientY - canvas.getBoundingClientRect().y)
+            x: event.clientX - canvas.getBoundingClientRect().x,
+            y: event.clientY - canvas.getBoundingClientRect().y
         };
     }
 
