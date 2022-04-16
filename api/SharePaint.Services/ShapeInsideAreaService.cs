@@ -6,22 +6,22 @@ namespace SharePaint.Services
 {
     public class ShapeInsideAreaService : IShapeInsideAreaService
     {
-        public bool IsShapeInsideArea(Shape shape, Coord2D point1, Coord2D point2)
+        public bool IsShapeInsideArea(Shape shape, Area2D area)
         {
             switch (shape.ShapeType)
             {
                 case ShapeType.Triangle:
-                    return IsTriangleInsideArea(shape, point1, point2);
+                    return IsTriangleInsideArea(shape, area);
                 case ShapeType.Rectangle:
-                    return IsRectangleInsideArea(shape, point1, point2);
+                    return IsRectangleInsideArea(shape, area);
                 case ShapeType.Circle:
-                    return IsCircleInsideArea(shape, point1, point2);
+                    return IsCircleInsideArea(shape, area);
                 default:
                     return false;
             }
         }
 
-        private bool IsTriangleInsideArea(Shape triangle, Coord2D point1, Coord2D point2)
+        private bool IsTriangleInsideArea(Shape triangle, Area2D area)
         {
             // all vertices have to be within area
             // ~5% equality tolerance
@@ -33,17 +33,17 @@ namespace SharePaint.Services
             var y2 = triangle.Points[1].Y;
             var y3 = triangle.Points[2].Y;
 
-            if (!x1.BetweenPoints(point1.X, point2.X) || !y1.BetweenPoints(point1.Y, point2.Y))
+            if (!x1.BetweenPoints(area.Point1.X, area.Point2.X) || !y1.BetweenPoints(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x2.BetweenPoints(point1.X, point2.X) || !y2.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!x2.BetweenPoints(area.Point1.X, area.Point2.X) || !y2.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x3.BetweenPoints(point1.X, point2.X) || !y3.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!x3.BetweenPoints(area.Point1.X, area.Point2.X) || !y3.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
@@ -51,7 +51,7 @@ namespace SharePaint.Services
             return insideArea;
         }
 
-        private bool IsRectangleInsideArea(Shape rectangle, Coord2D point1, Coord2D point2)
+        private bool IsRectangleInsideArea(Shape rectangle, Area2D area)
         {
             // all vertices have to be within area, but because it's rectangle, we only need to check two
             // ~5% equality tolerance
@@ -61,12 +61,12 @@ namespace SharePaint.Services
             var x2 = rectangle.Points[1].X;
             var y2 = rectangle.Points[1].Y;
 
-            if (!x1.BetweenPoints(point1.X, point2.X) || !y1.BetweenPoints(point1.Y, point2.Y))
+            if (!x1.BetweenPoints(area.Point1.X, area.Point2.X) || !y1.BetweenPoints(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x2.BetweenPoints(point1.X, point2.X) || !y2.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!x2.BetweenPoints(area.Point1.X, area.Point2.X) || !y2.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
@@ -74,7 +74,7 @@ namespace SharePaint.Services
             return insideArea;
         }
 
-        private bool IsCircleInsideArea(Shape circle, Coord2D point1, Coord2D point2)
+        private bool IsCircleInsideArea(Shape circle, Area2D area)
         {
             // circle's center has to be within area
             // circle's center + radius in four directions have to be within area
@@ -82,7 +82,7 @@ namespace SharePaint.Services
             bool insideArea = true;
             var circleCenter = circle.Points[0];
 
-            if (!circleCenter.X.BetweenPoints(point1.X, point2.X) || !circleCenter.Y.BetweenPoints(point1.Y, point2.Y))
+            if (!circleCenter.X.BetweenPoints(area.Point1.X, area.Point2.X) || !circleCenter.Y.BetweenPoints(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
@@ -91,28 +91,28 @@ namespace SharePaint.Services
             var testedPointX = circleCenter.X + radius;
             var testedPointY = circleCenter.Y;
 
-            if (insideArea && (!testedPointX.BetweenPoints(point1.X, point2.X) || !testedPointY.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
             testedPointX = circleCenter.X;
             testedPointY = circleCenter.Y + radius;
-            if (insideArea && (!testedPointX.BetweenPoints(point1.X, point2.X) || !testedPointY.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
             testedPointX = circleCenter.X - radius;
             testedPointY = circleCenter.Y;
-            if (insideArea && (!testedPointX.BetweenPoints(point1.X, point2.X) || !testedPointY.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
             testedPointX = circleCenter.X;
             testedPointY = circleCenter.Y - radius;
-            if (insideArea && (!testedPointX.BetweenPoints(point1.X, point2.X) || !testedPointY.BetweenPoints(point1.Y, point2.Y)))
+            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }

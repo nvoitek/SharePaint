@@ -35,9 +35,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 10, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -67,9 +68,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 110, Y = 110 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -99,9 +101,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 90 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -131,9 +134,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -163,9 +167,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -195,9 +200,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -227,9 +233,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -259,9 +266,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 110, Y = 110 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -291,9 +299,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -323,9 +332,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -355,9 +365,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -387,9 +398,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(triangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -418,9 +430,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 10, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -446,9 +459,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 90, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -474,9 +488,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 10 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -502,9 +517,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 90 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -530,9 +546,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -558,9 +575,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -586,9 +604,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -614,9 +633,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -642,9 +662,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 90, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -670,9 +691,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 10 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -698,9 +720,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -726,9 +749,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -754,9 +778,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -782,9 +807,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(rectangle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -812,9 +838,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 125, Y = 125 };
             Coord2D point2 = new Coord2D() { X = 500, Y = 500 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -840,9 +867,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 10, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -868,9 +896,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 90, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -896,9 +925,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 10 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -924,9 +954,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 90 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -952,9 +983,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
             Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -980,9 +1012,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -1008,9 +1041,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1036,9 +1070,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 500, Y = 500 };
             Coord2D point2 = new Coord2D() { X = 125, Y = 125 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1064,9 +1099,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1092,9 +1128,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 90, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1120,9 +1157,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 10 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1148,9 +1186,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);
@@ -1176,9 +1215,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
             Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -1204,9 +1244,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(true, result);
@@ -1232,9 +1273,10 @@ namespace SharePaint.Services.UnitTests
             };
             Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
             Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
-            bool result = _sut.IsShapeInsideArea(circle, point1, point2);
+            bool result = _sut.IsShapeInsideArea(circle, area);
 
             // Assert
             Assert.AreEqual(false, result);

@@ -43,9 +43,9 @@ namespace SharePaint.API.Controllers
         }
 
         [HttpPost("insideArea", Name = "GetShapesInsideArea")]
-        public async Task<ActionResult<List<Shape>>> Get(Coord2D point1, Coord2D point2)
+        public async Task<ActionResult<List<Shape>>> Get(Area2D area)
         {
-            return await _shapeService.GetInsideArea(point1, point2);
+            return await _shapeService.GetInsideArea(area);
         }
 
         [HttpPost]

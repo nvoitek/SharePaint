@@ -63,7 +63,7 @@ namespace SharePaint.Services
             return shapes;
         }
 
-        public async Task<List<Shape>> GetInsideArea(Coord2D point1, Coord2D point2)
+        public async Task<List<Shape>> GetInsideArea(Area2D area)
         {
             var allShapes = await _shapeRepository.Get();
 
@@ -71,7 +71,7 @@ namespace SharePaint.Services
 
             foreach (var shape in allShapes)
             {
-                var isShapeUnderPoint = await Task.Run(() =>_shapeInsideAreaService.IsShapeInsideArea(shape, point1, point2));
+                var isShapeUnderPoint = await Task.Run(() =>_shapeInsideAreaService.IsShapeInsideArea(shape, area));
 
                 if (isShapeUnderPoint)
                 {

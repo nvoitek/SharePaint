@@ -4,6 +4,6 @@ namespace SharePaint.Services.Interfaces
 {
     public interface IShapeInsideAreaService
     {
-        bool IsShapeInsideArea(Shape shape, Coord2D point1, Coord2D point2);
+        bool IsShapeInsideArea(Shape shape, Area2D area);
     }
 }
