@@ -11,9 +11,784 @@ namespace SharePaint.Services.UnitTests
         private readonly ShapeInsideAreaService _sut = new ShapeInsideAreaService();
 
         #region Triangle
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice1_IsOutsideArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 10, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice2_IsOutsideArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 120,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 110, Y = 110 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice3_IsOutsideArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 90 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Triangle_IsInsideArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Triangle_IsInsideArea_WithinTolerance()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_Triangle_IsInsideArea_NotWithinTolerance()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice1_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice2_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 120,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 110, Y = 110 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_TriangleVertice3_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Triangle_IsInsideReversedArea()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Triangle_IsInsideReversedArea_WithinTolerance()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_Triangle_IsInsideReversedArea_NotWithinTolerance()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(triangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
         #endregion
 
         #region Rectangle
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleLeft_IsOutsideArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 10, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleRight_IsOutsideArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 90, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleTop_IsOutsideArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 10 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleBottom_IsOutsideArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 90 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Rectangle_IsInsideArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0, Y = 0 };
+            Coord2D point2 = new Coord2D() { X = 100, Y = 100 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Rectangle_IsInsideArea_WithinTolerance()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_Rectangle_IsInsideArea_NotWithinTolerance()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleLeft_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 10, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleRight_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 90, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleTop_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 10 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_RectangleBottom_IsOutsideReversedArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 90 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Rectangle_IsInsideReversedArea()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100, Y = 100 };
+            Coord2D point2 = new Coord2D() { X = 0, Y = 0 };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnTrue_When_Rectangle_IsInsideReversedArea_WithinTolerance()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void ShapeInsideArea_Should_ReturnFalse_When_Rectangle_IsInsideReversedArea_NotWithinTolerance()
+        {
+            // Arrange
+            Shape rectangle = new Shape()
+            {
+                ShapeType = ShapeType.Rectangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 0,
+                        Y = 0
+                    },
+                    new Coord2D() {
+                        X = 100,
+                        Y = 100
+                    }
+                }
+            };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+
+            // Act
+            bool result = _sut.IsShapeInsideArea(rectangle, point1, point2);
+
+            // Assert
+            Assert.AreEqual(false, result);
+        }
         #endregion
 
         #region Circle

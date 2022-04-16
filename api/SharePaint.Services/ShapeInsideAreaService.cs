@@ -23,12 +23,55 @@ namespace SharePaint.Services
 
         private bool IsTriangleInsideArea(Shape triangle, Coord2D point1, Coord2D point2)
         {
-            throw new System.NotImplementedException();
+            // all vertices have to be within area
+            // ~5% equality tolerance
+            bool insideArea = true;
+            var x1 = triangle.Points[0].X;
+            var x2 = triangle.Points[1].X;
+            var x3 = triangle.Points[2].X;
+            var y1 = triangle.Points[0].Y;
+            var y2 = triangle.Points[1].Y;
+            var y3 = triangle.Points[2].Y;
+
+            if (!x1.BetweenPoints(point1.X, point2.X) || !y1.BetweenPoints(point1.Y, point2.Y))
+            {
+                insideArea = false;
+            }
+
+            if (insideArea && (!x2.BetweenPoints(point1.X, point2.X) || !y2.BetweenPoints(point1.Y, point2.Y)))
+            {
+                insideArea = false;
+            }
+
+            if (insideArea && (!x3.BetweenPoints(point1.X, point2.X) || !y3.BetweenPoints(point1.Y, point2.Y)))
+            {
+                insideArea = false;
+            }
+
+            return insideArea;
         }
 
         private bool IsRectangleInsideArea(Shape rectangle, Coord2D point1, Coord2D point2)
         {
-            throw new System.NotImplementedException();
+            // all vertices have to be within area, but because it's rectangle, we only need to check two
+            // ~5% equality tolerance
+            bool insideArea = true;
+            var x1 = rectangle.Points[0].X;
+            var y1 = rectangle.Points[0].Y;
+            var x2 = rectangle.Points[1].X;
+            var y2 = rectangle.Points[1].Y;
+
+            if (!x1.BetweenPoints(point1.X, point2.X) || !y1.BetweenPoints(point1.Y, point2.Y))
+            {
+                insideArea = false;
+            }
+
+            if (insideArea && (!x2.BetweenPoints(point1.X, point2.X) || !y2.BetweenPoints(point1.Y, point2.Y)))
+            {
+                insideArea = false;
+            }
+
+            return insideArea;
         }
 
         private bool IsCircleInsideArea(Shape circle, Coord2D point1, Coord2D point2)
