@@ -1,7 +1,12 @@
-.canvas {
-    background-color: lightgray;
+.canvas-container {
+    &:focus { outline: none; }
 
-    &.draw-cursor {
-        cursor: crosshair;
+    .canvas {
+        margin: 15px;
+        background-color: lightgray;
+    
+        &.draw-cursor {
+            cursor: crosshair;
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace SharePaint.Services
             // three line function y = ax + b
             // we check if point is on the line
             // then check if point on line is in bounds
-            // ~5% equality tolerance
+            // some equality tolerance
 
             var x1 = triangle.Points[0].X;
             var x2 = triangle.Points[1].X;
@@ -50,96 +50,19 @@ namespace SharePaint.Services
                 return true;
             }
 
-            if (point.X.BetweenPoints(x1, x2))
+            if (point.IsOnLine(triangle.Points[0], triangle.Points[1]))
             {
-                if (x1.IsEqual(x2))
-                {
-                    if (point.Y.BetweenPoints(y1, y2))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x1 * y2 - x2 * y1) / (x1 - x2);
-                    double a;
-                    if (x1.IsEqual(0))
-                    {
-                        a = (y2 - b) / x2;
-                    }
-                    else
-                    {
-                        a = (y1 - b) / x1;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
-
-
+                return true;
             }
 
-            if (point.X.BetweenPoints(x1, x3))
+            if (point.IsOnLine(triangle.Points[0], triangle.Points[2]))
             {
-                if (x1.IsEqual(x3))
-                {
-                    if (point.Y.BetweenPoints(y1, y3))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x1 * y3 - x3 * y1) / (x1 - x3);
-                    double a;
-                    if (x1.IsEqual(0))
-                    {
-                        a = (y3 - b) / x3;
-                    }
-                    else
-                    {
-                        a = (y1 - b) / x1;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
 
-            if (point.X.BetweenPoints(x2, x3))
+            if (point.IsOnLine(triangle.Points[1], triangle.Points[2]))
             {
-                if (x2.IsEqual(x3))
-                {
-                    if (point.Y.BetweenPoints(y2, y3))
-                    {
-                        return true;
-                    }
-                }
-                else
-                {
-                    var b = (x2 * y3 - x3 * y2) / (x2 - x3);
-                    double a;
-                    if (x2.IsEqual(0))
-                    {
-                        a = (y3 - b) / x3;
-                    }
-                    else
-                    {
-                        a = (y2 - b) / x2;
-                    }
-                    var yOnSide = a * point.X + b;
-
-                    if (point.Y.IsEqual(yOnSide))
-                    {
-                        return true;
-                    }
-                }
+                return true;
             }
 
             return false;
@@ -149,7 +72,7 @@ namespace SharePaint.Services
         {
             // it has to lie on one of four sides
             // we check if it has x in bounds for left or right y, or y in bounds for top or bottom x
-            // ~5% equality tolerance
+            // some equality tolerance
 
             var x1 = rectangle.Points[0].X;
             var x2 = rectangle.Points[1].X;
@@ -178,7 +101,7 @@ namespace SharePaint.Services
         private bool IsCircleUnderPoint(Shape circle, Coord2D point)
         {
             // its distance from circle center must be equal to radius
-            // ~5% equality tolerance
+            // some equality tolerance
             var circleCenter = circle.Points[0];
             var radius = circleCenter.DistanceTo(circle.Points[1]);
             var distanceFromCenter = circleCenter.DistanceTo(point);

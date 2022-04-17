@@ -10,13 +10,22 @@ import iwanthue from 'iwanthue';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ContentLoader from 'react-content-loader';
+import { Preview } from './components/preview/Preview';
 
 function App() {
 
   const [mode, setMode] = useState<Mode>(Mode.SelectPoint);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isPreviewLoading, setIsPreviewLoading] = useState<boolean>(false);
   const [usersColorsMap, setUsersColorsMap] = useState<{ [user: string]: string }>({});
   const [shapes, setShapes] = useState<Shape[]>([]);
+  const [selectedShapes, setSelectedShapes] = useState<Shape[]>([]);
+
+  // TODO calculate canvas size
+  const canvasWidth = 1000;
+  const canvasHeight = 800;
+  const previewWidth = 200;
+  const previewHeight = 160;
 
   useEffect(() => {
     getShapes()
@@ -61,8 +70,11 @@ function App() {
         <ContentLoader />
       ) : (
         <>
-          <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} />
-          <Legend usersColorsMap={usersColorsMap} />
+          <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} onSelectLoading={setIsPreviewLoading} onSelect={setSelectedShapes} canvasWidth={canvasWidth} canvasHeight={canvasHeight} widthProportion={1} heightProportion={1}/>
+          <div className="sidePanel">
+            <Legend usersColorsMap={usersColorsMap} />
+            <Preview usersColorsMap={usersColorsMap} shapes={selectedShapes} isPreviewLoading={isPreviewLoading} canvasWidth={canvasWidth} canvasHeight={canvasHeight} previewWidth={previewWidth} previewHeight={previewHeight} />
+          </div>
         </>
       )}
 

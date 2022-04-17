@@ -1,6 +1,7 @@
 import { ShapeType } from "./ShapeType";
 
 export enum Mode {
+    None,
     SelectPoint,
     SelectArea,
     DrawTriangle,
@@ -9,11 +10,11 @@ export enum Mode {
 }
 
 export function isDrawMode(mode: Mode) {
-    if (mode === Mode.DrawTriangle || mode === Mode.DrawRectangle || mode === Mode.DrawCircle) {
-        return true;
-    } else {
-        return false;
-    }
+    return (mode === Mode.DrawTriangle || mode === Mode.DrawRectangle || mode === Mode.DrawCircle);
+}
+
+export function isSelectMode(mode: Mode) {
+    return (mode === Mode.SelectPoint || mode === Mode.SelectArea);
 }
 
 export function getShapeType(mode: Mode) : ShapeType {

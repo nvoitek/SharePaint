@@ -165,8 +165,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -198,8 +198,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -363,8 +363,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -396,8 +396,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -573,8 +573,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -602,8 +602,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -776,8 +776,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -805,8 +805,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -1010,8 +1010,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -1039,8 +1039,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -1242,8 +1242,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * Double.Tolerance, Y = 100 - 0.75 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * Double.Tolerance, Y = 0 - 0.75 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 0.75 * DoubleExtension.Tolerance, Y = 100 - 0.75 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 0.75 * DoubleExtension.Tolerance, Y = 0 - 0.75 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
@@ -1271,8 +1271,8 @@ namespace SharePaint.Services.UnitTests
                     }
                 }
             };
-            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * Double.Tolerance, Y = 100 - 1.25 * Double.Tolerance };
-            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * Double.Tolerance, Y = 0 - 1.25 * Double.Tolerance };
+            Coord2D point1 = new Coord2D() { X = 100 - 1.25 * DoubleExtension.Tolerance, Y = 100 - 1.25 * DoubleExtension.Tolerance };
+            Coord2D point2 = new Coord2D() { X = 0 - 1.25 * DoubleExtension.Tolerance, Y = 0 - 1.25 * DoubleExtension.Tolerance };
             Area2D area = new Area2D() { Point1 = point1, Point2 = point2 };
 
             // Act
