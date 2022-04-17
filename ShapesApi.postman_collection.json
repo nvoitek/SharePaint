@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "225b287e-2c13-4ac9-b2c0-e1fefeed41fb",
+		"name": "ShapesApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"SetCollectionVariable\",() => {\r",
+							"    var token = responseBody;\r",
+							"    pm.collectionVariables.set(\"token\", token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"wojciech.niedzwiedz\",\r\n    \"password\" : \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/api/users/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shapes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44325/api/shapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shapes Under Point",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"x\":100,\r\n    \"y\":100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/api/shapes/underPoint",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes",
+						"underPoint"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shapes Inside Area",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"point1\" : {\r\n        \"x\":0.0,\r\n        \"y\":0.0\r\n    },\r\n    \"point2\" : {\r\n        \"x\":1000.0,\r\n        \"y\":1000.0\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/api/shapes/insideArea",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes",
+						"insideArea"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shape",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44325/api/shapes/625748d05f388e50989a9df2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes",
+						"625748d05f388e50989a9df2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Shape",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"points\": [\r\n        {\r\n            \"x\":0,\r\n            \"y\":0\r\n        },\r\n        {\r\n            \"x\":100,\r\n            \"y\":100\r\n        }\r\n    ],\r\n    \"shapeType\": 2,\r\n    \"author\": \"wojciech.niedzwiedz\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/api/shapes",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Shape",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n           \"shapeType\": 3,\r\n        \"points\": [\r\n            {\r\n                \"x\": 847.0,\r\n                \"y\": 237.0\r\n            },\r\n            {\r\n                \"x\": 928.0,\r\n                \"y\": 385.0\r\n            }\r\n        ],\r\n        \"author\": \"test2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44325/api/shapes/625883f50052eb9df605f053",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes",
+						"625883f50052eb9df605f053"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Shape",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44325/api/shapes/625c4d01996ca52283037569",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44325",
+					"path": [
+						"api",
+						"shapes",
+						"625c4d01996ca52283037569"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "Bearer {{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

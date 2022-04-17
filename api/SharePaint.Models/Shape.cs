@@ -2,6 +2,8 @@
 
 namespace SharePaint.Models
 {
+    // TODO: Split model and entity
+    // TODO: Add createdAt and updatedAt
     public class Shape : Entity
     {
         public ShapeType ShapeType { get; set; }
