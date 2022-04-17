@@ -18,17 +18,17 @@ namespace SharePaint.API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("login")]
+        [HttpPost("authorize")]
         public async Task<IActionResult> Login(User user) 
         {
-            var token = await _userService.Login(user);
+            var result = await _userService.Authorize(user);
 
-            if (string.IsNullOrEmpty(token))
+            if (result == null)
             {
                 return BadRequest(new { Message = "Username or password is incorrect" });
             }
 
-            return Ok(token);
+            return Ok(result);
         }
     }
 }
