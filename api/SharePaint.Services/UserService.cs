@@ -39,7 +39,7 @@ namespace SharePaint.Services
             // authentication successful so generate jwt token
             var token = generateJwtToken(authUser);
 
-            return new AuthorizationResult { Token = token };
+            return new AuthorizationResult { User = authUser.Username, Token = token };
         }
 
         private string generateJwtToken(User user)

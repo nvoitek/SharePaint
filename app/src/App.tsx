@@ -14,6 +14,7 @@ import { Preview } from './components/preview/Preview';
 import { Login } from './components/login/Login';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/header/Header';
+import { AuthorizationResult } from './models/AuthorizationResult';
 
 function App() {
 
@@ -35,8 +36,16 @@ function App() {
   const resetUser = () => {
     setUser('');
     setToken('');
-    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   }
+
+  useEffect(() => {
+    let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
+    if (authorizationResult) {
+      setUser(authorizationResult.user);
+      setToken(authorizationResult.token);
+    }
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -89,7 +98,9 @@ function App() {
             <ContentLoader />
           ) : (
             <>
-              <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} onSelectLoading={setIsPreviewLoading} onSelect={setSelectedShapes} canvasWidth={canvasWidth} canvasHeight={canvasHeight} widthProportion={1} heightProportion={1} />
+              <div className='mainPanel'>
+                <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} onSelectLoading={setIsPreviewLoading} onSelect={setSelectedShapes} canvasWidth={canvasWidth} canvasHeight={canvasHeight} widthProportion={1} heightProportion={1} />
+              </div>
               <div className="sidePanel">
                 <Legend usersColorsMap={usersColorsMap} />
                 <Preview usersColorsMap={usersColorsMap} shapes={selectedShapes} isPreviewLoading={isPreviewLoading} canvasWidth={canvasWidth} canvasHeight={canvasHeight} previewWidth={previewWidth} previewHeight={previewHeight} />

@@ -11,7 +11,7 @@ export function checkIfComplete(points: Coord2D[], shapeType: ShapeType) : boole
     return false;
 }
 
-export function drawOnCanvas(context: CanvasRenderingContext2D, points: Coord2D[], shapeType: ShapeType, color: string) {
+export function drawShapeOnCanvas(context: CanvasRenderingContext2D, points: Coord2D[], shapeType: ShapeType, color: string) {
     if (shapeType === ShapeType.Triangle) {
         drawTriangle(context, points, color);
     } else if (shapeType === ShapeType.Rectangle) {
@@ -65,20 +65,7 @@ function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[], col
     
     context.strokeStyle = color;
 
-    context.beginPath();
-    context.moveTo(points[0].x, points[0].y);
-
-    context.lineTo(points[0].x, points[1].y);
-    context.stroke();
-    
-    context.lineTo(points[1].x, points[1].y);
-    context.stroke();
-
-    context.lineTo(points[1].x, points[0].y);
-    context.stroke();
-    
-    context.lineTo(points[0].x, points[0].y);
-    context.stroke();
+    context.strokeRect(points[0].x, points[0].y, points[1].x - points[0].x, points[1].y - points[0].y);
 }
 
 function drawCircle(context: CanvasRenderingContext2D, points: Coord2D[], color: string) {

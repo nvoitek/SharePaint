@@ -2,11 +2,13 @@ import axios from "axios";
 import { Shape } from "../models/Shape";
 import { Coord2D } from "../models/Coord2D";
 import { Area2D } from "../models/Area2D";
+import { AuthorizationResult } from "../models/AuthorizationResult";
 
 export async function getShapes(): Promise<Shape[]> {
+    let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + authorizationResult?.token
         }
     }
 
@@ -20,9 +22,10 @@ export async function getShapes(): Promise<Shape[]> {
 }
 
 export async function createShape(shape: Shape): Promise<string> {
+    let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + authorizationResult?.token
         }
     }
 
@@ -36,9 +39,10 @@ export async function createShape(shape: Shape): Promise<string> {
 }
 
 export async function getShapesUnderPoint(point: Coord2D): Promise<Shape[]> {
+    let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + authorizationResult?.token
         }
     }
 
@@ -52,9 +56,10 @@ export async function getShapesUnderPoint(point: Coord2D): Promise<Shape[]> {
 }
 
 export async function getShapesInsideArea(area: Area2D): Promise<Shape[]> {
+    let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('token')
+            'Authorization': 'Bearer ' + authorizationResult?.token
         }
     }
 

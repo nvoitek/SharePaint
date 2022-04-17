@@ -2,13 +2,12 @@
     margin-left: 15px;
 
     .preview-scrollable {
-        display: flex;
-        flex-direction: column;
         height: 60vh;
         overflow-y: scroll;
 
         .row {
             display: flex;
+            height: 200px;
     
             p {
                 width: 200px;
@@ -17,8 +16,7 @@
     }
 
     .loader {
-        display: flex;
-        flex-direction: column;
+        display: block;
         width: 400px;
     }
     
