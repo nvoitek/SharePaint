@@ -1,6 +1,6 @@
 ﻿using SharePaint.Repository.Interfaces;
 
-namespace SharePaint.API
+namespace SharePaint.API.Db
 {
     public class DatabaseConnectionSettings : IDatabaseConnectionSettings
     {

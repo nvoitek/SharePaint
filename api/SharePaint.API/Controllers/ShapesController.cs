@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SharePaint.API.Auth;
 using SharePaint.Models;
 using SharePaint.Services.Interfaces;
 using System.Collections.Generic;
@@ -6,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace SharePaint.API.Controllers
 {
+    // TODO: Split model and entity
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ShapesController : ControllerBase

@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using SharePaint.API.Auth;
+using SharePaint.API.Db;
 using SharePaint.Repository;
 using SharePaint.Repository.Interfaces;
 using SharePaint.Services;
@@ -30,11 +32,19 @@ namespace SharePaint.API
             services.AddSingleton<IDatabaseConnectionSettings>(sp =>
                 sp.GetRequiredService<IOptions<DatabaseConnectionSettings>>().Value);
 
+            services.Configure<AuthorizationSettings>(
+                Configuration.GetSection(nameof(AuthorizationSettings)));
+
+            services.AddSingleton<IAuthorizationSettings>(sp =>
+                sp.GetRequiredService<IOptions<AuthorizationSettings>>().Value);
+
             services.AddSingleton<IMongoDbShapeContext, MongoDbShapeContext>();
             services.AddSingleton<IShapeRepository, ShapeRepository>();
+            services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IShapeUnderPointService, ShapeUnderPointService>();
             services.AddSingleton<IShapeInsideAreaService, ShapeInsideAreaService>();
             services.AddSingleton<IShapeService, ShapeService>();
+            services.AddSingleton<IUserService, UserService>();
 
             services.AddControllers().AddNewtonsoftJson();
         }
@@ -51,7 +61,8 @@ namespace SharePaint.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
