@@ -29,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"wojciech.niedzwiedz\",\r\n    \"password\" : \"test\"\r\n}",
+					"raw": "{\r\n    \"username\" : \"test-user\",\r\n    \"password\" : \"test\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
