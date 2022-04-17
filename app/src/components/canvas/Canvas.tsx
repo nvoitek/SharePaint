@@ -1,6 +1,6 @@
 import './Canvas.scss';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { drawShapeOnCanvas, checkIfComplete, normalizePoints } from '../../utils/draw';
+import { drawShape, checkIfComplete, normalizePoints, clear, previewShape, previewSelect } from '../../utils/draw';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType, isSelectMode } from '../../models/Mode';
@@ -72,7 +72,7 @@ export function Canvas(props: CanvasProps) {
             return;
         }
 
-        previewCtx.clearRect(0, 0, props.canvasWidth, props.canvasHeight);
+        clear(previewCtx, props.canvasWidth, props.canvasHeight);
     },[props.canvasWidth, props.canvasHeight]);
 
     const draw = (event: React.MouseEvent<HTMLElement>) => {
@@ -97,7 +97,7 @@ export function Canvas(props: CanvasProps) {
 
         } else if (checkIfComplete(newClickedPoints, shapeType)) {
             // last click
-            drawShapeOnCanvas(ctx, normalizePoints(newClickedPoints, props.widthProportion, props.heightProportion), shapeType, "black")
+            drawShape(ctx, normalizePoints(newClickedPoints, props.widthProportion, props.heightProportion), shapeType, "black")
 
             let shape: Shape = {
                 author: 'test',
@@ -134,34 +134,8 @@ export function Canvas(props: CanvasProps) {
             }
 
             let currentPoint = getClickCoord2D(previewCanvasRef.current, event);
-            previewCtx.clearRect(0, 0, props.canvasWidth, props.canvasHeight);
-
-            if (props.currentMode === Mode.DrawTriangle) {
-                if (clickedPoints.length === 1) {
-                    previewCtx.beginPath();
-                    previewCtx.moveTo(clickedPoints[0].x, clickedPoints[0].y);
-                    previewCtx.lineTo(currentPoint.x, currentPoint.y);
-                    previewCtx.stroke();
-                } else {
-                    previewCtx.beginPath();
-                    previewCtx.moveTo(clickedPoints[0].x, clickedPoints[0].y);
-                    previewCtx.lineTo(clickedPoints[1].x, clickedPoints[1].y);
-                    previewCtx.lineTo(currentPoint.x, currentPoint.y);
-                    previewCtx.lineTo(clickedPoints[0].x, clickedPoints[0].y);
-                    previewCtx.stroke();
-                }
-            }
-            if (props.currentMode === Mode.DrawRectangle) {
-                previewCtx.clearRect(0, 0, props.canvasWidth, props.canvasHeight);
-                previewCtx.strokeRect(clickedPoints[0].x, clickedPoints[0].y, currentPoint.x - clickedPoints[0].x, currentPoint.y - clickedPoints[0].y);
-
-            } else if (props.currentMode === Mode.DrawCircle) {
-                let radius = Math.sqrt(Math.pow(clickedPoints[0].x - currentPoint.x, 2) + Math.pow(clickedPoints[0].y - currentPoint.y, 2));
-
-                previewCtx.beginPath();
-                previewCtx.arc(clickedPoints[0].x, clickedPoints[0].y, radius, 0, 2 * Math.PI);
-                previewCtx.stroke();
-            }
+            clear(previewCtx, props.canvasWidth, props.canvasHeight);
+            previewShape(previewCtx, [...clickedPoints, currentPoint], getShapeType(props.currentMode));
         }
     }
 
@@ -232,9 +206,8 @@ export function Canvas(props: CanvasProps) {
             }
 
             let currentPoint = getClickCoord2D(previewCanvasRef.current, event);
-            previewCtx.clearRect(0, 0, props.canvasWidth, props.canvasHeight);
-            previewCtx.setLineDash([6]);
-            previewCtx.strokeRect(clickedPoints[0].x, clickedPoints[0].y, currentPoint.x - clickedPoints[0].x, currentPoint.y - clickedPoints[0].y);
+            clear(previewCtx, props.canvasWidth, props.canvasHeight);
+            previewSelect(previewCtx, [...clickedPoints, currentPoint]);
         }
     }
 
@@ -254,7 +227,7 @@ export function Canvas(props: CanvasProps) {
         }
 
         for (let shape of props.shapes) {
-            drawShapeOnCanvas(ctx!, normalizePoints(shape.points, props.widthProportion, props.heightProportion), shape.shapeType, props.usersColorsMap[shape.author]);
+            drawShape(ctx!, normalizePoints(shape.points, props.widthProportion, props.heightProportion), shape.shapeType, props.usersColorsMap[shape.author]);
         }
 
     }, [canvasRef, props.usersColorsMap, props.shapes, props.widthProportion, props.heightProportion])
