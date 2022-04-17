@@ -1,8 +1,13 @@
 .App {
   display: flex;
-
-  .sidePanel {
+  flex-direction: column;
+  
+  main {
     display: flex;
-    flex-direction: column;
+
+    .sidePanel {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
