@@ -28,7 +28,7 @@ namespace SharePaint.Services
             return await _userRepository.Get(id);
         }
 
-        public async Task<string> Login(User user)
+        public async Task<AuthorizationResult> Authorize(User user)
         {
             var users = await _userRepository.Get();
             var authUser = users.SingleOrDefault(x => x.Username == user.Username && x.Password == user.Password);
@@ -39,7 +39,7 @@ namespace SharePaint.Services
             // authentication successful so generate jwt token
             var token = generateJwtToken(authUser);
 
-            return token;
+            return new AuthorizationResult { Token = token };
         }
 
         private string generateJwtToken(User user)
