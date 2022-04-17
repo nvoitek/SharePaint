@@ -1,3 +1,4 @@
 export interface AuthorizationResult {
-    token: string
+    token: string,
+    user: string
 }

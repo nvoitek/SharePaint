@@ -22,10 +22,10 @@ export function Login(props: LoginProps) {
             .then(res => {
                 props.setUser(username);
                 props.setToken(res.token);
-                localStorage.setItem('token', res.token);
+                localStorage.setItem('user', JSON.stringify(res));
             })
             .catch(err => {
-                setError(err.response.data.message);
+                setError(err.response.data);
             });
     }
 

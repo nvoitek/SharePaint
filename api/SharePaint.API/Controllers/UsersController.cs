@@ -25,7 +25,7 @@ namespace SharePaint.API.Controllers
 
             if (result == null)
             {
-                return BadRequest(new { Message = "Username or password is incorrect" });
+                return BadRequest("Username or password is incorrect");
             }
 
             return Ok(result);
