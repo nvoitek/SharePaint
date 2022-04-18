@@ -14,14 +14,14 @@ export function checkIfComplete(points: Coord2D[], shapeType: ShapeType) : boole
 export function drawShape(context: CanvasRenderingContext2D, points: Coord2D[], shapeType: ShapeType, color: string = "black", dashedLine: boolean = false) {
     if (shapeType === ShapeType.Triangle) {
         if (points.length === 3) {
-            drawTriangle(context, points, color);
+            drawTriangle(context, points, color, dashedLine);
         } else {
-            drawLine(context, points, color);
+            drawLine(context, points, color, dashedLine);
         }
     } else if (shapeType === ShapeType.Rectangle) {
-        drawRectangle(context, points, color);
+        drawRectangle(context, points, color, dashedLine);
     } else if (shapeType === ShapeType.Circle) {
-        drawCircle(context, points, color);
+        drawCircle(context, points, color, dashedLine);
     }
 }
 
@@ -60,6 +60,9 @@ function drawLine(context: CanvasRenderingContext2D, points: Coord2D[], color: s
     context.moveTo(points[0].x, points[0].y);
     context.lineTo(points[1].x, points[1].y);
     context.stroke();
+    
+    context.strokeStyle = "black";
+    context.setLineDash([]);
 }
 
 function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[], color: string = "black", dashedLine: boolean = false) {
@@ -78,6 +81,9 @@ function drawTriangle(context: CanvasRenderingContext2D, points: Coord2D[], colo
     context.lineTo(points[2].x, points[2].y);
     context.lineTo(points[0].x, points[0].y);
     context.stroke();
+    
+    context.strokeStyle = "black";
+    context.setLineDash([]);
 }
 
 function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[], color: string = "black", dashedLine: boolean = false) {
@@ -91,6 +97,9 @@ function drawRectangle(context: CanvasRenderingContext2D, points: Coord2D[], col
     }
 
     context.strokeRect(points[0].x, points[0].y, points[1].x - points[0].x, points[1].y - points[0].y);
+
+    context.strokeStyle = "black";
+    context.setLineDash([]);
 }
 
 function drawCircle(context: CanvasRenderingContext2D, points: Coord2D[], color: string = "black", dashedLine: boolean = false) {
@@ -108,4 +117,7 @@ function drawCircle(context: CanvasRenderingContext2D, points: Coord2D[], color:
     context.beginPath();
     context.arc(points[0].x, points[0].y, radius, 0, 2 * Math.PI);
     context.stroke();
+    
+    context.strokeStyle = "black";
+    context.setLineDash([]);
 }

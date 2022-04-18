@@ -208,7 +208,7 @@ export function Canvas(props: CanvasProps) {
 
             let currentPoint = getClickCoord2D(previewCanvasRef.current, event);
             clear(previewCtx, props.canvasWidth, props.canvasHeight);
-            drawShape(previewCtx, [...clickedPoints, currentPoint], ShapeType.Rectangle, "gray", true);
+            drawShape(previewCtx, [...clickedPoints, currentPoint], ShapeType.Rectangle, "#282828", true);
         }
     }
 
