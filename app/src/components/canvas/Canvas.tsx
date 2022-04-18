@@ -1,12 +1,13 @@
 import './Canvas.scss';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { drawShape, checkIfComplete, normalizePoints, clear, previewShape, previewSelect } from '../../utils/draw';
+import { drawShape, checkIfComplete, normalizePoints, clear } from '../../utils/draw';
 import { Shape } from '../../models/Shape';
 import { Coord2D } from '../../models/Coord2D';
 import { Mode, isDrawMode, getShapeType, isSelectMode } from '../../models/Mode';
 import { createShape, getShapesInsideArea, getShapesUnderPoint } from '../../services/ShapeService';
 import { toast } from 'react-toastify';
 import { Area2D } from '../../models/Area2D';
+import { ShapeType } from '../../models/ShapeType';
 
 interface CanvasProps {
     currentMode: Mode,
@@ -97,7 +98,7 @@ export function Canvas(props: CanvasProps) {
 
         } else if (checkIfComplete(newClickedPoints, shapeType)) {
             // last click
-            drawShape(ctx, normalizePoints(newClickedPoints, props.widthProportion, props.heightProportion), shapeType, "black")
+            drawShape(ctx, normalizePoints(newClickedPoints, props.widthProportion, props.heightProportion), shapeType)
 
             let shape: Shape = {
                 author: 'test',
@@ -135,7 +136,7 @@ export function Canvas(props: CanvasProps) {
 
             let currentPoint = getClickCoord2D(previewCanvasRef.current, event);
             clear(previewCtx, props.canvasWidth, props.canvasHeight);
-            previewShape(previewCtx, [...clickedPoints, currentPoint], getShapeType(props.currentMode));
+            drawShape(previewCtx, [...clickedPoints, currentPoint], getShapeType(props.currentMode));
         }
     }
 
@@ -207,7 +208,7 @@ export function Canvas(props: CanvasProps) {
 
             let currentPoint = getClickCoord2D(previewCanvasRef.current, event);
             clear(previewCtx, props.canvasWidth, props.canvasHeight);
-            previewSelect(previewCtx, [...clickedPoints, currentPoint]);
+            drawShape(previewCtx, [...clickedPoints, currentPoint], ShapeType.Rectangle, "gray", true);
         }
     }
 
