@@ -61,9 +61,11 @@ function App() {
           }
 
           let palette: string[] = [];
-          if (Object.keys(newUsersColorsMap).length <= 2) {
+          if (Object.keys(newUsersColorsMap).length === 1) {
+            palette = ["red"];
+          } else if (Object.keys(newUsersColorsMap).length === 2) {
             palette = ["red", "blue"];
-          } else {
+          } else if (Object.keys(newUsersColorsMap).length !== 0){
             palette = iwanthue(Object.keys(newUsersColorsMap).length);
           }
 
@@ -99,7 +101,7 @@ function App() {
           ) : (
             <>
               <div className='mainPanel'>
-                <Canvas currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} onSelectLoading={setIsPreviewLoading} onSelect={setSelectedShapes} canvasWidth={canvasWidth} canvasHeight={canvasHeight} widthProportion={1} heightProportion={1} />
+                <Canvas user={user} currentMode={mode} usersColorsMap={usersColorsMap} shapes={shapes} onSelectLoading={setIsPreviewLoading} onSelect={setSelectedShapes} canvasWidth={canvasWidth} canvasHeight={canvasHeight} widthProportion={1} heightProportion={1} />
               </div>
               <div className="sidePanel">
                 <Legend usersColorsMap={usersColorsMap} />

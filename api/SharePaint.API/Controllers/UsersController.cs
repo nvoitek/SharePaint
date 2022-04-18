@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace SharePaint.API.Controllers
 {
     // TODO: Split model and entity
+    // TODO: Add signin with password hashing
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
