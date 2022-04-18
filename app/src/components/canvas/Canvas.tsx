@@ -10,6 +10,7 @@ import { Area2D } from '../../models/Area2D';
 import { ShapeType } from '../../models/ShapeType';
 
 interface CanvasProps {
+    user?: string,
     currentMode: Mode,
     usersColorsMap: { [user: string]: string },
     shapes: Shape[],
@@ -100,18 +101,20 @@ export function Canvas(props: CanvasProps) {
             // last click
             drawShape(ctx, normalizePoints(newClickedPoints, props.widthProportion, props.heightProportion), shapeType)
 
-            let shape: Shape = {
-                author: 'test',
-                shapeType: getShapeType(props.currentMode),
-                points: newClickedPoints
+            if (props.user) {
+                let shape: Shape = {
+                    author: props.user,
+                    shapeType: getShapeType(props.currentMode),
+                    points: newClickedPoints
+                }
+    
+                createShape(shape)
+                    .then(id => console.log(id))
+                    .catch(err => {
+                        console.log(err)
+                        toast.error("Failed getting shapes", {})
+                    });
             }
-
-            createShape(shape)
-                .then(id => console.log(id))
-                .catch(err => {
-                    console.log(err)
-                    toast.error("Failed getting shapes", {})
-                });
 
             reset();
 

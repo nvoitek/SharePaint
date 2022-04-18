@@ -9,7 +9,8 @@ export function Legend(props: LegendProps) {
     return (
         <div className='legend'>
         {
-            Object.keys(props.usersColorsMap).map((key: string, i: number) => {
+            (Object.keys(props.usersColorsMap).length > 0)
+            ? Object.keys(props.usersColorsMap).map((key: string, i: number) => {
                 return (
                     <div className='row' key={i}>
                         <span className="dot" style={{backgroundColor: props.usersColorsMap[key]}}></span>
@@ -17,6 +18,7 @@ export function Legend(props: LegendProps) {
                     </div>
                 )
             })
+            : ''
         }
         </div>
     );
