@@ -17,7 +17,7 @@ namespace SharePaint.Services.Utils
             return d1 < d2 || IsEqual(d1, d2);
         }
 
-        public static bool BetweenPoints(this double x, double x1, double x2)
+        public static bool IsBetween(this double x, double x1, double x2)
         {
             if ((LessOrEqual(x1, x) && LessOrEqual(x, x2)) || (LessOrEqual(x2, x) && LessOrEqual(x, x1)))
             {

@@ -754,6 +754,37 @@ namespace SharePaint.Services.UnitTests
             // Assert
             Assert.AreEqual(false, result);
         }
+
+        [TestMethod]
+        public void ShapeUnderPoint_Should_ReturnTrue_When_Triangle_Side2_Is_UnderPoint_WithinTolerance()
+        {
+            // Arrange
+            Shape triangle = new Shape()
+            {
+                ShapeType = ShapeType.Triangle,
+                Points = new List<Coord2D>() {
+                    new Coord2D() {
+                        X = 564,
+                        Y = 156
+                    },
+                    new Coord2D() {
+                        X = 415,
+                        Y = 317
+                    },
+                    new Coord2D() {
+                        X = 542,
+                        Y = 493
+                    }
+                }
+            };
+            Coord2D point = new Coord2D() { X = 556, Y = 276 };
+
+            // Act
+            bool result = _sut.IsShapeUnderPoint(triangle, point);
+
+            // Assert
+            Assert.AreEqual(true, result);
+        }
         #endregion
 
         #region Rectangle
