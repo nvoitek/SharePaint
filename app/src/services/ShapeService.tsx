@@ -13,7 +13,7 @@ export async function getShapes(): Promise<Shape[]> {
     }
 
     return new Promise((resolve, reject) => {
-        axios.get("/api/shapes", config).then((response) => {
+        axios.get(process.env.REACT_APP_SHAPES_API!, config).then((response) => {
             resolve(response.data as Shape[]);
         }, (err) => {
             reject(err);
@@ -30,7 +30,7 @@ export async function createShape(shape: Shape): Promise<string> {
     }
 
     return new Promise((resolve, reject) => {
-        axios.post("/api/shapes", shape, config).then((response) => {
+        axios.post(process.env.REACT_APP_SHAPES_API!, shape, config).then((response) => {
             resolve(response.data as string);
         }, (err) => {
             reject(err);
@@ -47,7 +47,7 @@ export async function getShapesUnderPoint(point: Coord2D): Promise<Shape[]> {
     }
 
     return new Promise((resolve, reject) => {
-        axios.post("/api/shapes/underPoint", point, config).then((response) => {
+        axios.post(process.env.REACT_APP_SHAPES_API! + "/underPoint", point, config).then((response) => {
             resolve(response.data as Shape[]);
         }, (err) => {
             reject(err);
@@ -64,7 +64,7 @@ export async function getShapesInsideArea(area: Area2D): Promise<Shape[]> {
     }
 
     return new Promise((resolve, reject) => {
-        axios.post("/api/shapes/insideArea", area, config).then((response) => {
+        axios.post(process.env.REACT_APP_SHAPES_API! + "/insideArea", area, config).then((response) => {
             resolve(response.data as Shape[]);
         }, (err) => {
             reject(err);
