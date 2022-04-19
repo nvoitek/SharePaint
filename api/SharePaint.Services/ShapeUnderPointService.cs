@@ -79,7 +79,7 @@ namespace SharePaint.Services
             var y1 = rectangle.Points[0].Y;
             var y2 = rectangle.Points[1].Y;
 
-            if (point.X.BetweenPoints(x1, x2))
+            if (point.X.IsBetween(x1, x2))
             {
                 if (y1.IsEqual(point.Y) || y2.IsEqual(point.Y))
                 {
@@ -87,7 +87,7 @@ namespace SharePaint.Services
                 }
             }
 
-            if (point.Y.BetweenPoints(y1, y2))
+            if (point.Y.IsBetween(y1, y2))
             {
                 if (x1.IsEqual(point.X) || x2.IsEqual(point.X))
                 {

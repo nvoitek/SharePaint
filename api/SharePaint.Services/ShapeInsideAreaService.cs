@@ -33,17 +33,17 @@ namespace SharePaint.Services
             var y2 = triangle.Points[1].Y;
             var y3 = triangle.Points[2].Y;
 
-            if (!x1.BetweenPoints(area.Point1.X, area.Point2.X) || !y1.BetweenPoints(area.Point1.Y, area.Point2.Y))
+            if (!x1.IsBetween(area.Point1.X, area.Point2.X) || !y1.IsBetween(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x2.BetweenPoints(area.Point1.X, area.Point2.X) || !y2.BetweenPoints(area.Point1.Y, area.Point2.Y)))
+            if (insideArea && (!x2.IsBetween(area.Point1.X, area.Point2.X) || !y2.IsBetween(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x3.BetweenPoints(area.Point1.X, area.Point2.X) || !y3.BetweenPoints(area.Point1.Y, area.Point2.Y)))
+            if (insideArea && (!x3.IsBetween(area.Point1.X, area.Point2.X) || !y3.IsBetween(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
@@ -61,12 +61,12 @@ namespace SharePaint.Services
             var x2 = rectangle.Points[1].X;
             var y2 = rectangle.Points[1].Y;
 
-            if (!x1.BetweenPoints(area.Point1.X, area.Point2.X) || !y1.BetweenPoints(area.Point1.Y, area.Point2.Y))
+            if (!x1.IsBetween(area.Point1.X, area.Point2.X) || !y1.IsBetween(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
 
-            if (insideArea && (!x2.BetweenPoints(area.Point1.X, area.Point2.X) || !y2.BetweenPoints(area.Point1.Y, area.Point2.Y)))
+            if (insideArea && (!x2.IsBetween(area.Point1.X, area.Point2.X) || !y2.IsBetween(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
@@ -83,7 +83,7 @@ namespace SharePaint.Services
             bool insideArea = true;
             var circleCenter = circle.Points[0];
 
-            if (!circleCenter.X.BetweenPoints(area.Point1.X, area.Point2.X) || !circleCenter.Y.BetweenPoints(area.Point1.Y, area.Point2.Y))
+            if (!circleCenter.X.IsBetween(area.Point1.X, area.Point2.X) || !circleCenter.Y.IsBetween(area.Point1.Y, area.Point2.Y))
             {
                 insideArea = false;
             }
@@ -92,14 +92,14 @@ namespace SharePaint.Services
             var testedPointX = circleCenter.X + radius;
             var testedPointY = circleCenter.Y + radius;
 
-            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
+            if (insideArea && (!testedPointX.IsBetween(area.Point1.X, area.Point2.X) || !testedPointY.IsBetween(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
 
             testedPointX = circleCenter.X - radius;
             testedPointY = circleCenter.Y - radius;
-            if (insideArea && (!testedPointX.BetweenPoints(area.Point1.X, area.Point2.X) || !testedPointY.BetweenPoints(area.Point1.Y, area.Point2.Y)))
+            if (insideArea && (!testedPointX.IsBetween(area.Point1.X, area.Point2.X) || !testedPointY.IsBetween(area.Point1.Y, area.Point2.Y)))
             {
                 insideArea = false;
             }
