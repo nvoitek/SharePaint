@@ -8,7 +8,8 @@ export async function getShapes(): Promise<Shape[]> {
     let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + authorizationResult?.token
+            'Authorization': 'Bearer ' + authorizationResult?.token,
+            'Access-Control-Allow-Origin' : '*'
         }
     }
 
@@ -25,7 +26,8 @@ export async function createShape(shape: Shape): Promise<string> {
     let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + authorizationResult?.token
+            'Authorization': 'Bearer ' + authorizationResult?.token,
+            'Access-Control-Allow-Origin' : '*'
         }
     }
 
@@ -42,7 +44,8 @@ export async function getShapesUnderPoint(point: Coord2D): Promise<Shape[]> {
     let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + authorizationResult?.token
+            'Authorization': 'Bearer ' + authorizationResult?.token,
+            'Access-Control-Allow-Origin' : '*'
         }
     }
 
@@ -59,7 +62,8 @@ export async function getShapesInsideArea(area: Area2D): Promise<Shape[]> {
     let authorizationResult: AuthorizationResult = JSON.parse(localStorage.getItem('user')!);
     let config = {
         headers: {
-            'Authorization': 'Bearer ' + authorizationResult?.token
+            'Authorization': 'Bearer ' + authorizationResult?.token,
+            'Access-Control-Allow-Origin' : '*'
         }
     }
 
