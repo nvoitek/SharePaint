@@ -46,7 +46,14 @@ namespace SharePaint.API
             services.AddSingleton<IShapeService, ShapeService>();
             services.AddSingleton<IUserService, UserService>();
 
+            services.AddCors();
             services.AddControllers().AddNewtonsoftJson();
+
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "app/build";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,12 +68,27 @@ namespace SharePaint.API
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true) // allow any origin
+                .AllowCredentials()); // allow credentials
+
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "app";
             });
         }
     }
